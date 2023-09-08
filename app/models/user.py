@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .join import boards_pins
 
 
 class User(db.Model, UserMixin):
@@ -11,8 +12,16 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
+    profile_pic = db.Column(db.String(255))
+    bio = db.Column(db.Text())
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+
+    # Relationships
+    pins = db.relationship("Pin", back_populates="user")
+    boards = db.relationship("Board", back_populates="user")
+
 
     @property
     def password(self):
@@ -29,5 +38,7 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'profilePic': self.profile_pic,
+            'bio': self.bio,
+            'email': self.email,
         }
