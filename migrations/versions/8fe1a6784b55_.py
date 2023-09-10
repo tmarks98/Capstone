@@ -1,16 +1,27 @@
 """empty message
 
-Revision ID: f885bfbc337e
+Revision ID: 8fe1a6784b55
 Revises: 
-Create Date: 2023-09-09 21:04:37.128701
+Create Date: 2023-09-09 21:13:04.013767
 
 """
 from alembic import op
 import sqlalchemy as sa
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
+if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+if environment == "production":
+        op.execute(f"ALTER TABLE pins SET SCHEMA {SCHEMA};")
+if environment == "production":
+        op.execute(f"ALTER TABLE boards SET SCHEMA {SCHEMA};")
+if environment == "production":
+        op.execute(f"ALTER TABLE board_pins SET SCHEMA {SCHEMA};")
 
 # revision identifiers, used by Alembic.
-revision = 'f885bfbc337e'
+revision = '8fe1a6784b55'
 down_revision = None
 branch_labels = None
 depends_on = None
