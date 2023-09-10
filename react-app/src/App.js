@@ -5,6 +5,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import { PinFeed } from "./components/Pins";
+import { CreatePin } from "./components/CreatePin";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +20,12 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/pins/new">
+            <CreatePin />
+          </Route>
+          <Route path="/pins">
+            <PinFeed />
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
