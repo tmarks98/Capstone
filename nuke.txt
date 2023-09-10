@@ -112,7 +112,7 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
-/// versions ^
+/// versions ^ at the top
 
 if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
@@ -124,6 +124,6 @@ if environment == "production":
         op.execute(f"ALTER TABLE board_pins SET SCHEMA {SCHEMA};")
 
 
-/// versions ^
+/// versions ^ under the tables
 
 /// go to render delete your DB get ur INTERNAL DB LINK for your web services

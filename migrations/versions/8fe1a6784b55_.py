@@ -11,15 +11,6 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
-if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-if environment == "production":
-        op.execute(f"ALTER TABLE pins SET SCHEMA {SCHEMA};")
-if environment == "production":
-        op.execute(f"ALTER TABLE boards SET SCHEMA {SCHEMA};")
-if environment == "production":
-        op.execute(f"ALTER TABLE board_pins SET SCHEMA {SCHEMA};")
-
 # revision identifiers, used by Alembic.
 revision = '8fe1a6784b55'
 down_revision = None
@@ -67,6 +58,14 @@ def upgrade():
     sa.PrimaryKeyConstraint('boards', 'pins')
     )
     # ### end Alembic commands ###
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+    if environment == "production":
+        op.execute(f"ALTER TABLE pins SET SCHEMA {SCHEMA};")
+    if environment == "production":
+        op.execute(f"ALTER TABLE boards SET SCHEMA {SCHEMA};")
+    if environment == "production":
+        op.execute(f"ALTER TABLE board_pins SET SCHEMA {SCHEMA};")
 
 
 def downgrade():
