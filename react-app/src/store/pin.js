@@ -22,7 +22,7 @@ export const loadPinsThunk = (pins) => async (dispatch) => {
 };
 
 export const thunkGetPins = () => async (dispatch) => {
-  const res = await fetch("/api/pins/word");
+  const res = await fetch("/api/pins");
   if (res.ok) {
     const pins = await res.json();
     dispatch(getPins(pins));
@@ -38,7 +38,7 @@ export const thunkPostPins = (pin) => async (dispatch) => {
   console.log('resssssssss', res)
   if (res.ok) {
     const data = await res.json();
-    dispatch(createPin(data.pin));
+    dispatch(createPin(data));
     return null;
   } else if (res.status < 500) {
     const data = await res.json();
