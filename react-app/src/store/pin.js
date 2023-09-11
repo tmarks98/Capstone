@@ -35,7 +35,6 @@ export const thunkPostPins = (pin) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(pin),
   });
-  console.log('resssssssss', res)
   if (res.ok) {
     const data = await res.json();
     dispatch(createPin(data));
