@@ -23,7 +23,7 @@ function App() {
           <Route path="/pins/new">
             <CreatePin />
           </Route>
-          <Route path="/pins">
+          <Route path="/">
             <PinFeed />
           </Route>
           <Route path="/login" >

@@ -22,7 +22,7 @@ export function PinFeed() {
 
   return (
     <div>
-      <div>
+      <div style={{display: 'grid'}}>
         {pinValues.map((pin) => {
           return (
             <div>
