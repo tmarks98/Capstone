@@ -2,9 +2,12 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import CreatePinButton from "../CreatePinButton";
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
+	const history = useHistory();
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
@@ -13,9 +16,14 @@ function Navigation({ isLoaded }){
 				<NavLink exact to="/">Home</NavLink>
 			</li>
 			{isLoaded && (
-				<li>
-					<ProfileButton user={sessionUser} />
-				</li>
+				<div>
+				<div>
+				{sessionUser && <ProfileButton user={sessionUser} />}
+				</div>
+				<div>
+				{sessionUser && <CreatePinButton />}
+				</div>
+				</div>
 			)}
 		</ul>
 	);
