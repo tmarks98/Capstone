@@ -18,7 +18,7 @@ function Navigation({ isLoaded }){
 			{isLoaded && (
 				<div>
 				<div>
-				{sessionUser && <ProfileButton user={sessionUser} />}
+				<ProfileButton user={sessionUser} />
 				</div>
 				<div>
 				{sessionUser && <CreatePinButton />}

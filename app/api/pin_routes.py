@@ -16,9 +16,6 @@ def validation_errors_to_error_messages(validation_errors):
 @pin_routes.route("/")
 def index():
     pins = Pin.query.all()
-    if not pins:
-        return {"errors": ['pins not found']}, 404
-    print('text')
     return {'pins': [pin.to_dict() for pin in pins]}
 
 @pin_routes.route('/new', methods=['POST'])
@@ -56,6 +53,6 @@ def edit_pin(pin_id):
         pin.body = form.data["body"]
 
         db.session.commit()
-        return {'pin': pin.pin_to_dict()}
+        return {'pin': pin.to_dict()}
 
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400

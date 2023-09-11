@@ -29,6 +29,7 @@ export function editPin(pin, pinId) {
 // Thunks
 export const thunkGetPins = () => async (dispatch) => {
   const res = await fetch("/api/pins");
+  console.log('res', res)
   if (res.ok) {
     const pins = await res.json();
     dispatch(getPins(pins));
