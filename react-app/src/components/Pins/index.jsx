@@ -19,7 +19,7 @@ export function PinFeed() {
         <div>
             <div>
                 {pinValues.map((pin) => {
-                    return <div><img style={{width: '200px'}} src={pin.main_pic} alt="" /><p><div>{pin.title}{console.log('eeeeee', pin)}</div>{pin.body}</p></div>
+                    return <div><img style={{width: '200px'}} src={pin.mainPic} alt="" /><p><div>{pin.title}{console.log('eeeeee', pin)}</div>{pin.body}</p></div>
                 })}
                 hello 
             </div>

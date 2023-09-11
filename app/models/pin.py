@@ -25,6 +25,6 @@ class Pin(db.Model):
       'userId': self.user_id,
       'body': self.body,
       'title': self.title,
-      'main_pic': self.main_pic,
+      'mainPic': self.main_pic,
       'createdAt': self.created_at
     }

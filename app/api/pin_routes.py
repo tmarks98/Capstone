@@ -34,5 +34,5 @@ def create_post():
         )
         db.session.add(pin)
         db.session.commit()
-        return {'pin': pin.pin_to_dict_notes()}
+        return {'pin': pin.to_dict()}
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
