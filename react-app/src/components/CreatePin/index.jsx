@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { thunkPostPins } from "../../store/pin";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 export function CreatePin() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [imagePreview, setImagePreview] = useState(null);
@@ -29,6 +31,7 @@ export function CreatePin() {
     e.preventDefault();
     formData.user_id = sessionUser.id;
     dispatch(thunkPostPins(formData));
+    history.push("/")
   };
 
   return (
