@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkEditPins } from '../../store/pin';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 function EditPin({ pin }) {
+    const dispatch = useDispatch();
+    console.log('444', pin)
     const [formData, setFormData] = useState({
-        main_pic: pin.main_pic,
+        main_pic: pin.mainPic,
         title: pin.title,
         body: pin.body,
     });
-    const { pinId } = useParams();
-    const pinsObj = useSelector((state) => state.pins)
-    console.log('eeeee', pinsObj)
-    const pinValues = Object.values(pinsObj.pins);
+    console.log('eeeee', pin)
 
-    const dispatch = useDispatch();
 
     const handleChange = (e) => {
         const { name, value } = e.target;

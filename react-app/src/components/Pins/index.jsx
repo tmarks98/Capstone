@@ -1,31 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetPins } from "../../store/pin";
 import EditPin from "../EditPin";
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
+import { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useRef } from "react";
+import DeletePin from "../DeletePin";
 
+export function MyPins() {
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const pinsObj = useSelector((state) => state.pins);
+    const pinValues = Object.values(pinsObj.pins);
+    const sessionUser = useSelector((state) => state.session.user);
+    const pinOwner = pinValues.filter((pin) => pin.userId === sessionUser.id);
+    const [showMenu, setShowMenu] = useState(false);
+    const ulRef = useRef();
 
-export function PinFeed() {
-  const dispatch = useDispatch();
-  const [isEditOpen, setIsEditOpen] = useState(false);
+    useEffect(() => {
+        dispatch(thunkGetPins());
+    }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(thunkGetPins());
-  }, [dispatch]);
+    const closeMenu = (e) => {
+        if (!ulRef.current.contains(e.target)) {
+          setShowMenu(false);
+        }
+      };
 
-  const pinsObj = useSelector((state) => state.pins);
-  // console.log('pinsObj', pinsObj)
-  const pinValues = Object.values(pinsObj.pins);
-  // console.log('pinsValue', pinValues)
-  const handleEditClick = () => {
-    setIsEditOpen(true);
-};
-
-  return (
-    <div>
-      <div style={{display: 'grid'}}>
-        {pinValues.map((pin) => {
+    return (
+        <div>
+      <div>
+        {pinOwner.map((pin) => {
           return (
-            <div>
+            <div key={pin.id}>
               <img style={{ width: "200px" }} src={pin.mainPic} alt="" />
               <div>
                 <p>
@@ -33,12 +42,20 @@ export function PinFeed() {
                 </p>
                 <p>{pin.body}</p>
               </div>
-              <button onClick={handleEditClick}>Edit</button>
-              {isEditOpen && <EditPin pin={pin} onClose={() => setIsEditOpen(false)} />}
+              <OpenModalButton
+              buttonText="Edit"
+              onItemClick={closeMenu}
+              modalComponent={<EditPin pin={pin}/>}
+            />
+            <OpenModalButton
+              buttonText="Delete"
+              onItemClick={closeMenu}
+              modalComponent={<DeletePin pin={pin}/>}
+            />
             </div>
           );
         })}
       </div>
     </div>
-  );
+    )
 }

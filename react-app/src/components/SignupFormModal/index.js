@@ -30,53 +30,61 @@ function SignupFormModal() {
 	};
 
 	return (
-		<>
-			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
-				<ul>
+		<div style={{backgroundColor: 'rgb(76, 76, 76)'}}>
+		<div className="signup-modal">
+		<img className="signup-modal-gif" src="https://i.giphy.com/media/h2zhIZFmeueAw/giphy.webp" alt="" />
+		<h1 style={{color: 'white', fontSize: '43px', fontFamily: 'trebuchet ms'}}>Spinterest</h1>
+		<p style={{color: 'white', margin: "0px"}}>Welcome, you'll never be bored again.</p>
+			<form className='signup-modal-form' onSubmit={handleSubmit}>
+				<ul className="errors-list">
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<li className="errors" key={idx}>{error}</li>
 					))}
 				</ul>
-				<label>
-					Email
+				<label className="signup-modal-labels">
 					<input
+						className="signup-modal-username"
+						placeHolder=' Email'
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
 					/>
 				</label>
-				<label>
-					Username
+				<label className="signup-modal-labels">
 					<input
+						className="signup-modal-username"
+						placeHolder=' Username'
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						required
 					/>
 				</label>
-				<label>
-					Password
+				<label className="signup-modal-labels">
 					<input
+						className="signup-modal-password"
+						placeHolder=' Password'
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						required
 					/>
 				</label>
-				<label>
-					Confirm Password
+				<label className="signup-modal-labels">
 					<input
+						className="signup-modal-confirm-password"
+						placeHolder=' Confirm Password'
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
 					/>
 				</label>
-				<button type="submit">Sign Up</button>
+				<button type="submit" className="signup-modal-button">Sign Up</button>
 			</form>
-		</>
+			</div>
+		</div>
 	);
 }
 

@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from flask_login import login_required, current_user
 from app.models import Pin
 from app import db
 from app.forms import PinForm
@@ -7,6 +8,9 @@ from app.forms import PinForm
 pin_routes = Blueprint('pins', __name__)
 
 def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
@@ -19,6 +23,7 @@ def index():
     return {'pins': [pin.to_dict() for pin in pins]}
 
 @pin_routes.route('/new', methods=['POST'])
+@login_required
 def create_pin():
     form = PinForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -35,9 +40,10 @@ def create_pin():
         return {'pin': pin.to_dict()}
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
-@pin_routes.route('/<int:id>', methods=['PUT'])
-def edit_pin(pin_id):
-    pin = Pin.query.get(pin_id)
+@pin_routes.route('/<int:pinId>', methods=['POST'])
+@login_required
+def edit_pin(pinId):
+    pin = Pin.query.get(pinId)
 
     form = PinForm()
     
@@ -56,3 +62,16 @@ def edit_pin(pin_id):
         return {'pin': pin.to_dict()}
 
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
+@pin_routes.route('/<int:pinId>', methods=['DELETE'])
+@login_required
+def delete_pin(pinId):
+    pin = Pin.query.get(pinId)
+    if not pin:
+        return {"errors": ["pin is not found"]}, 404
+
+    if current_user.id != pin.user_id:
+        return {"errors": ["you are not authorized to edit this pin"]}, 403
+    db.session.delete(pin)
+    db.session.commit()
+    return {"message": "pin deleted"}

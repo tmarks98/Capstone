@@ -2,6 +2,7 @@
 const GET_PINS = "GET /api/pins";
 const CREATE_PIN = "POST /api/pins";
 const EDIT_PIN = "PUT /api/pins/:pinId";
+const DELETE_PIN = "DELETE /api/pins/:pinId";
 
 // Actions
 export function getPins(pins) {
@@ -26,10 +27,16 @@ export function editPin(pin, pinId) {
   };
 }
 
+export function deletePin(pinId) {
+  return {
+    type: DELETE_PIN,
+    pinId,
+  };
+}
+
 // Thunks
 export const thunkGetPins = () => async (dispatch) => {
   const res = await fetch("/api/pins");
-  console.log('res', res)
   if (res.ok) {
     const pins = await res.json();
     dispatch(getPins(pins));
@@ -58,11 +65,11 @@ export const thunkPostPins = (pin) => async (dispatch) => {
 
 export const thunkEditPins = (pin, pinId) => async (dispatch) => {
   const res = await fetch(`/api/pins/${pinId}`, {
-    method: "PUT",
+    method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(pin),
-  })
-  console.log('res', res)
+  });
+  console.log("res", res);
 
   if (res.ok) {
     const data = await res.json();
@@ -76,10 +83,17 @@ export const thunkEditPins = (pin, pinId) => async (dispatch) => {
   } else {
     return ["An error occurred. Please try again."];
   }
-}
+};
+
+export const thunkDeletePin = (pinId) => async (dispatch) => {
+  const res = await fetch(`/api/pins/${pinId}`, {
+    method: "DELETE",
+  });
+  dispatch(deletePin(pinId));
+  return res;
+};
 
 // Reducer
-
 const initialState = {
   pins: {},
 };
@@ -101,6 +115,11 @@ const pinsReducer = (state = initialState, action) => {
       const newState = { ...state };
       newState.pins[action.pinId] = action.pin;
       return newState;
+    }
+    case DELETE_PIN: {
+      const newState = {...state }
+      delete newState.pins[action.pinId];
+      return newState
     }
     default:
       return state;
