@@ -40,7 +40,7 @@ def create_pin():
         return {'pin': pin.to_dict()}
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
-@pin_routes.route('/<int:pinId>', methods=['POST'])
+@pin_routes.route('/<int:pinId>', methods=['GET', 'POST', 'PUT'])
 @login_required
 def edit_pin(pinId):
     pin = Pin.query.get(pinId)
@@ -48,19 +48,19 @@ def edit_pin(pinId):
     form = PinForm()
     
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    print('----FORM DATA', form.validate_on_submit)
     if not pin:
         return {"errors": ['Pin not found']}, 404
     
     if form.validate_on_submit():
         pin.user_id = form.data["user_id"]
+        print('----PINS', pin.user_id)
         pin.main_pic = form.data["main_pic"]
         pin.title = form.data["title"]
         pin.body = form.data["body"]
-
         db.session.commit()
         return {'pin': pin.to_dict()}
-
+    print('----ERRORS', validation_errors_to_error_messages(form.errors))
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 @pin_routes.route('/<int:pinId>', methods=['DELETE'])

@@ -11,7 +11,7 @@ class Pin(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
   body = db.Column(db.Text())
   title = db.Column(db.String(40))
-  main_pic = db.Column(db.String(255), nullable=False)
+  main_pic = db.Column(db.String(255))
   created_at = db.Column(db.TIMESTAMP())
 
 

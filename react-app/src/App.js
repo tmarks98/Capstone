@@ -34,7 +34,7 @@ function App() {
           <Route path="/mypins">
             <MyPins />
           </Route>
-          <Route path="/mypins/:pinId">
+          <Route path="/mypins/edit/:pinId">
             <EditPin />
           </Route>
           <Route path="/mypins/:pinId">

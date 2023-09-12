@@ -3,14 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetPins } from "../../store/pin";
 import EditPin from "../EditPin";
 import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from "../LoginFormModal";
 import { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useRef } from "react";
 import DeletePin from "../DeletePin";
 
 export function MyPins() {
-    const history = useHistory();
     const dispatch = useDispatch();
     const pinsObj = useSelector((state) => state.pins);
     const pinValues = Object.values(pinsObj.pins);

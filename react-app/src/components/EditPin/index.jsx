@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { thunkEditPins } from '../../store/pin';
 
 function EditPin({ pin }) {
     const dispatch = useDispatch();
-    console.log('444', pin)
+    console.log('pin prop', pin)
     const [formData, setFormData] = useState({
+        user_id: pin.userId,
         main_pic: pin.mainPic,
         title: pin.title,
         body: pin.body,
     });
-    console.log('eeeee', pin)
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,7 +19,7 @@ function EditPin({ pin }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(thunkEditPins(pin.id, formData));
+        dispatch(thunkEditPins(formData, pin.id));
     };
 
     return (
