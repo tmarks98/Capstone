@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { thunkGetPins } from "../../store/pin";
+import React from "react";
 import EditPin from "../EditPin";
 import OpenModalButton from "../OpenModalButton";
 import { useState } from "react";
@@ -32,7 +30,6 @@ export function MyPins({ pin }) {
           </div>
           <OpenModalButton
             buttonText="Edit"
-            onItemClick={closeMenu}
             modalComponent={
               <EditPin
                 pin={pin}

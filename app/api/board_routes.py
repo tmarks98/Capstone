@@ -43,3 +43,25 @@ def create_board():
         db.session.commit()
         return {'board': board.to_dict()}
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
+@board_routes.route('/<int:boardId>', methods=['GET', 'POST', 'PUT'])
+@login_required
+def edit_board(boardId):
+    board = Board.query.get(boardId)
+
+    form = BoardForm()
+    
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if not board:
+        return {"errors": ['board not found']}, 404
+    
+    if form.validate_on_submit():
+        board.user_id = form.data["user_id"]
+        board.main_pic = form.data["main_pic"]
+        board.title = form.data["title"]
+        board.body = form.data["body"]
+        db.session.commit()
+        return {'board': board.to_dict()}
+    print('----ERRORS', validation_errors_to_error_messages(form.errors))
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400

@@ -1,39 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetBoards } from "../../store/board";
-import CreateBoard from "../CreateBoard";
+import OpenModalButton from "../OpenModalButton";
+import { useRef } from "react";
+import EditBoard from "../EditBoard";
 
 
-export function MyBoards() {
+export function MyBoards({ board }) {
   const dispatch = useDispatch();
+  const ulRef = useRef();
+  const [showMenu, setShowMenu] = useState(false);
+  const [coverpic, setCoverpic] = useState(board.coverpic);
+  const [title, setTitle] = useState(board.title);
 
-  useEffect(() => {
-    dispatch(thunkGetBoards());
-  }, [dispatch]);
-
-  const boardsObj = useSelector((state) => state.boards);
-  // const pinsObj1 = useSelector((state) => state.pins.pins);
-//   console.log('boards', boardsObj)
-  const boardValues = Object.values(boardsObj.boards);
-  console.log('board values', boardValues)
-  // console.log('pinsValue', boardValues)
+  const closeMenu = (e) => {
+    if (!ulRef.current.contains(e.target)) {
+      setShowMenu(false);
+    }
+  };
 
   return (
     <div>
-      <CreateBoard />
-      <div>
-        {boardValues.map((board) => {
-          return (
-            <div>
-              <img style={{ width: "200px" }} src={board.coverpic} alt="" />
-              <div>
-                <p>
-                  {board.title}
-                </p>
-              </div>
-            </div>
-          );
-        })}
+      <div key={board.id}>
+        <img style={{ width: "200px" }} src={coverpic} alt="" />
+        <div>
+          <p>{title}</p>
+        </div>
+        <OpenModalButton
+            buttonText="Edit"
+            modalComponent={
+              <EditBoard
+                board={board}
+                coverpic={coverpic}
+                setCoverpic={setCoverpic}
+                title={title}
+                setTitle={setTitle}
+              />
+            }
+          />
       </div>
     </div>
   );

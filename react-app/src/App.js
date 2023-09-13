@@ -9,6 +9,7 @@ import { MyBoards } from "./components/Boards";
 import EditPin from "./components/EditPin";
 import PinInfo from "./components/PinInfo";
 import PinViews from "./components/PinViews";
+import BoardViews from "./components/BoardViews";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function App() {
             <CreatePin />
           </Route>
           <Route path="/myboards">
-            <MyBoards />
+            <BoardViews />
           </Route>
           <Route path="/mypins">
             <PinViews />

@@ -2,6 +2,7 @@
 
 const GET_BOARDS = "GET /api/boards";
 const CREATE_BOARD = "POST /api/boards";
+const EDIT_BOARD = "PUT /api/boards/:boardId";
 
 // Actions
 export function getBoards(boards) {
@@ -14,6 +15,14 @@ export function getBoards(boards) {
 export function createBoard(board) {
   return {
     type: CREATE_BOARD,
+    board,
+  };
+}
+
+export function editBoard(boardId, board) {
+  return {
+    type: EDIT_BOARD,
+    boardId,
     board,
   };
 }
@@ -48,6 +57,31 @@ export const thunkPostBoards = (board) => async (dispatch) => {
   }
 };
 
+export const thunkEditBoards = (board, boardId) => async (dispatch) => {
+  console.log('board', board)
+  const res = await fetch(`/api/boards/${boardId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(board),
+  });
+  console.log("res", res);
+
+  if (res.ok) {
+    const data = await res.json();
+    console.log('res-good', data)
+    dispatch(editBoard(data.board, boardId));
+    return null;
+  } else if (res.status < 500) {
+    const data = await res.json();
+    console.log('res-bad', data)
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+};
+
 // Reducer
 const initialState = {
   boards: {},
@@ -64,6 +98,11 @@ const boardsReducer = (state = initialState, action) => {
     case CREATE_BOARD: {
       const newState = { ...state };
       newState.boards[action.board.id] = action.board;
+      return newState;
+    }
+    case EDIT_BOARD: {
+      const newState = { ...state };
+      newState.boards[action.boardId] = action.board;
       return newState;
     }
     default:
