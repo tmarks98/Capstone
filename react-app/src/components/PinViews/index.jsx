@@ -3,6 +3,7 @@ import { thunkGetPins } from "../../store/pin";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import CreatePinButton from "../CreatePinButton"
 
 export default function PinViews() {
   const dispatch = useDispatch();
@@ -14,12 +15,13 @@ export default function PinViews() {
   useEffect(() => {
     dispatch(thunkGetPins());
   }, [dispatch]);
-  console.log("multi pin render");
+
   return (
-    <>
+    <div>
+    <CreatePinButton />
       {pinOwner.map((ele) => {
         return <MyPins pin={ele} />;
       })}
-    </>
+    </div>
   );
 }

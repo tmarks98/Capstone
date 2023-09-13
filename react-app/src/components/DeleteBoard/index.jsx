@@ -1,25 +1,24 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { thunkDeletePin } from "../../store/pin";
+import { thunkDeleteBoard } from "../../store/board";
 import { useModal } from "../../context/Modal";
 import './index.css'
 
-function DeletePin({ pin, onDelete }) {
+function DeleteBoard({ board, onDelete }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
   const handleDelete = (e) => {
     e.preventDefault();
-    onDelete();
-    dispatch(thunkDeletePin(pin.id));
+    dispatch(thunkDeleteBoard(board.id));
     onDelete();
     closeModal();
   };
 
   return(
-    <div id="confirm-delete-pin-container">
-      <h2>Are you sure you want to delete your pin?</h2>
-      <div id="confirm-delete-pin-buttons-container">
+    <div id="confirm-delete-board-container">
+      <h2>Are you sure you want to delete your board?</h2>
+      <div id="confirm-delete-board-buttons-container">
         <button
         id="no-button"
         onClick={closeModal}
@@ -33,4 +32,4 @@ function DeletePin({ pin, onDelete }) {
   )
 }
 
-export default DeletePin;
+export default DeleteBoard;

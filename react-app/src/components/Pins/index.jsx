@@ -1,24 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import EditPin from "../EditPin";
-import OpenModalButton from "../OpenModalButton";
-import { useState } from "react";
 import { useRef } from "react";
+import OpenModalButton from "../OpenModalButton";
 import DeletePin from "../DeletePin";
 
 export function MyPins({ pin }) {
-  const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
-
+  const [showMenu, setShowMenu] = useState(false);
   const [url, setUrl] = useState(pin.mainPic);
   const [title, setTitle] = useState(pin.title);
   const [body, setBody] = useState(pin.body);
+  const [isDeleted, setIsDeleted] = useState(false)
 
   const closeMenu = (e) => {
     if (!ulRef.current.contains(e.target)) {
       setShowMenu(false);
     }
   };
-  console.log("single pin render");
+  
+  const onDelete = () => {
+    setIsDeleted(true);
+  }
+
   return (
     <div>
       <div>
@@ -45,7 +48,7 @@ export function MyPins({ pin }) {
           <OpenModalButton
             buttonText="Delete"
             onItemClick={closeMenu}
-            modalComponent={<DeletePin pin={pin} />}
+            modalComponent={<DeletePin pin={pin} onDelete={onDelete}/>}
           />
         </div>
       </div>

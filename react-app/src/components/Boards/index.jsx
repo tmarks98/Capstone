@@ -1,32 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { thunkGetBoards } from "../../store/board";
-import OpenModalButton from "../OpenModalButton";
-import { useRef } from "react";
+import React, { useState } from "react";
 import EditBoard from "../EditBoard";
-
+import { useRef } from "react";
+import OpenModalButton from "../OpenModalButton";
+import DeleteBoard from "../DeleteBoard";
 
 export function MyBoards({ board }) {
-  const dispatch = useDispatch();
   const ulRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
   const [coverpic, setCoverpic] = useState(board.coverpic);
   const [title, setTitle] = useState(board.title);
-
+  const [isBoardDeleted, setIsBoardDeleted] = useState(false)
+  console.log('isBoardDeleted??', isBoardDeleted)
   const closeMenu = (e) => {
     if (!ulRef.current.contains(e.target)) {
       setShowMenu(false);
     }
   };
 
+  const onBoardDelete = () => {
+    setIsBoardDeleted(true);
+  }
+  
   return (
-    <div>
-      <div key={board.id}>
-        <img style={{ width: "200px" }} src={coverpic} alt="" />
-        <div>
-          <p>{title}</p>
-        </div>
-        <OpenModalButton
+    <div>{console.log('onBoardDelete', onBoardDelete)}
+      <div>
+        <div key={board.id}>
+          <img style={{ width: "200px" }} src={coverpic} alt="" />
+          <div>
+            <p>{title}</p>
+          </div>
+          <OpenModalButton
             buttonText="Edit"
             modalComponent={
               <EditBoard
@@ -38,6 +41,12 @@ export function MyBoards({ board }) {
               />
             }
           />
+          <OpenModalButton
+            buttonText="Delete"
+            onItemClick={closeMenu}
+            modalComponent={<DeleteBoard board={board} onDelete={onBoardDelete}/>}
+          />
+        </div>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@
 const GET_BOARDS = "GET /api/boards";
 const CREATE_BOARD = "POST /api/boards";
 const EDIT_BOARD = "PUT /api/boards/:boardId";
+const DELETE_BOARD = "DELETE /api/boards/:boardId";
 
 // Actions
 export function getBoards(boards) {
@@ -24,6 +25,13 @@ export function editBoard(boardId, board) {
     type: EDIT_BOARD,
     boardId,
     board,
+  };
+}
+
+export function deleteBoard(boardId) {
+  return {
+    type: DELETE_BOARD,
+    boardId,
   };
 }
 
@@ -82,6 +90,14 @@ export const thunkEditBoards = (board, boardId) => async (dispatch) => {
   }
 };
 
+export const thunkDeleteBoard = (boardId) => async (dispatch) => {
+  const res = await fetch(`/api/boards/${boardId}`, {
+    method: "DELETE",
+  });
+  dispatch(deleteBoard(boardId));
+  return res;
+};
+
 // Reducer
 const initialState = {
   boards: {},
@@ -104,6 +120,11 @@ const boardsReducer = (state = initialState, action) => {
       const newState = { ...state };
       newState.boards[action.boardId] = action.board;
       return newState;
+    }
+    case DELETE_BOARD: {
+      const newState = {...state }
+      delete newState.boards[action.boardId];
+      return newState
     }
     default:
       return state;

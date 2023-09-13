@@ -23,6 +23,5 @@ class Board(db.Model):
       'userId': self.user_id,
       'title': self.title,
       'coverpic': self.coverpic,
-      'pins': self.pins,
       'createdAt': self.created_at
     }

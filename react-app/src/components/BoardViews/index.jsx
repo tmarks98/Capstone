@@ -11,13 +11,12 @@ export default function BoardViews() {
   const boardValues = Object.values(boardsObj.boards);
   const sessionUser = useSelector((state) => state.session.user);
   const boardOwner = boardValues.filter((board) => board.userId === sessionUser.id);
-  console.log('boardOwner', boardOwner)
-  console.log('boardValues', boardValues)
+
 
   useEffect(() => {
     dispatch(thunkGetBoards());
   }, [dispatch]);
-  console.log("multi board render");
+
   return (
     <div>
         <CreateBoard />
