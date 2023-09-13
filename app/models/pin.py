@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .join import boards_pins
+from .board_pins import boards_pins
 
 class Pin(db.Model):
   __tablename__ = "pins"

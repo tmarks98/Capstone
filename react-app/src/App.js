@@ -6,9 +6,9 @@ import Navigation from "./components/Navigation";
 import { PinFeed } from "./components/PinsFeed";
 import { CreatePin } from "./components/CreatePin";
 import { MyBoards } from "./components/Boards";
-import { MyPins } from "./components/Pins";
 import EditPin from "./components/EditPin";
 import PinInfo from "./components/PinInfo";
+import PinViews from "./components/PinViews";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ function App() {
             <MyBoards />
           </Route>
           <Route path="/mypins">
-            <MyPins />
+            <PinViews />
           </Route>
           <Route path="/mypins/edit/:pinId">
             <EditPin />

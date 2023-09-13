@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { thunkPostPins } from "../../store/pin";
+import { thunkPostBoards } from "../../store/board";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-export function CreatePin() {
+
+export function CreateBoard() {
   const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [imagePreview, setImagePreview] = useState(null);
   const [formData, setFormData] = useState({
     user_id: "",
-    main_pic: "",
+    coverpic: "",
     title: "",
-    body: "",
   });
 
   const handleChange = (e) => {
@@ -22,27 +22,26 @@ export function CreatePin() {
 
   const handleImageChange = (e) => {
     const imageURL = e.target.value;
-    setFormData({ ...formData, main_pic: imageURL });
+    setFormData({ ...formData, coverpic: imageURL });
     setImagePreview(imageURL);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     formData.user_id = sessionUser.id;
-    dispatch(thunkPostPins(formData));
-    history.push("/")
+    dispatch(thunkPostBoards(formData));
   };
 
   return (
     <div>
-      <h2>Create a New Pin</h2>
+      <h2>Create a New Board</h2>
       <form onSubmit={handleSubmit}>
         <input type="hidden" name="user_id" value={sessionUser.id} />
         <input
           placeholder="Image URL"
           type="text"
-          name="main_pic"
-          value={formData.main_pic}
+          name="coverpic"
+          value={formData.coverpic}
           onChange={handleImageChange}
         />
         {imagePreview && (
@@ -58,11 +57,10 @@ export function CreatePin() {
           value={formData.title}
           onChange={handleChange}
         />
-        <input name="body" value={formData.body} onChange={handleChange} />
-        <button type="submit">Create Pin</button>
+        <button type="submit">Create Board</button>
       </form>
     </div>
   );
 }
 
-export default CreatePin
+export default CreateBoard

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetBoards } from "../../store/board";
+import CreateBoard from "../CreateBoard";
 
 
 export function MyBoards() {
@@ -18,7 +19,8 @@ export function MyBoards() {
   // console.log('pinsValue', boardValues)
 
   return (
-    <div> ALL MY BOARDS
+    <div>
+      <CreateBoard />
       <div>
         {boardValues.map((board) => {
           return (

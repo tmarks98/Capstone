@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .join import boards_pins
+from .board_pins import boards_pins
 
 class Board(db.Model):
   __tablename__ = "boards"
@@ -23,5 +23,6 @@ class Board(db.Model):
       'userId': self.user_id,
       'title': self.title,
       'coverpic': self.coverpic,
+      'pins': self.pins,
       'createdAt': self.created_at
     }
