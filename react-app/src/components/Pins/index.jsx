@@ -3,6 +3,7 @@ import EditPin from "../EditPin";
 import { useRef } from "react";
 import OpenModalButton from "../OpenModalButton";
 import DeletePin from "../DeletePin";
+import './index.css'
 
 export function MyPins({ pin }) {
   const ulRef = useRef();
@@ -23,10 +24,9 @@ export function MyPins({ pin }) {
   }
 
   return (
-    <div>
       <div>
-        <div key={pin.id}>
-          <img style={{ width: "200px" }} src={url} alt="" />
+        <div key={pin.id} className="each-my-pin">
+          <img id='mypin-img-pin' src={url} alt="" />
           <div>
             <p>{title}</p>
             <p>{body}</p>
@@ -52,6 +52,5 @@ export function MyPins({ pin }) {
           />
         </div>
       </div>
-    </div>
   );
 }

@@ -3,13 +3,12 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import { PinFeed } from "./components/PinsFeed";
 import { CreatePin } from "./components/CreatePin";
-import { MyBoards } from "./components/Boards";
 import EditPin from "./components/EditPin";
-import PinInfo from "./components/PinInfo";
 import PinViews from "./components/PinViews";
 import BoardViews from "./components/BoardViews";
+import PinFeedViews from "./components/PinFeedViews";
+import PinInfoViews from "./components/PinInfoView";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +23,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <PinFeed />
+            <PinFeedViews />
           </Route>
           <Route path="/pins/new">
             <CreatePin />
@@ -38,8 +37,8 @@ function App() {
           <Route path="/mypins/edit/:pinId">
             <EditPin />
           </Route>
-          <Route path="/mypins/:pinId">
-            <PinInfo />
+          <Route path="/pins/:pinId">
+            <PinInfoViews />
           </Route>
         </Switch>
       )}

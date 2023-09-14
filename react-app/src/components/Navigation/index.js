@@ -21,8 +21,8 @@ function Navigation({ isLoaded }) {
           <div>
             <ProfileButton user={sessionUser} />
           </div>
-          <div>{sessionUser && <CreatePinButton />}</div>
-          <div>{sessionUser && <CreateBoardButton />}</div>
+          {/* <div>{sessionUser && <CreatePinButton />}</div>
+          <div>{sessionUser && <CreateBoardButton />}</div> */}
         </div>
       )}
     </ul>

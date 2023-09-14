@@ -1,5 +1,6 @@
 // Types
 const GET_PINS = "GET /api/pins";
+const GET_PIN = "GET /api/pins/:pinId";
 const CREATE_PIN = "POST /api/pins";
 const EDIT_PIN = "PUT /api/pins/:pinId";
 const DELETE_PIN = "DELETE /api/pins/:pinId";
@@ -9,6 +10,13 @@ export function getPins(pins) {
   return {
     type: GET_PINS,
     pins,
+  };
+}
+
+export function getPin(pinId) {
+  return {
+    type: GET_PIN,
+    pinId,
   };
 }
 
@@ -40,6 +48,15 @@ export const thunkGetPins = () => async (dispatch) => {
   if (res.ok) {
     const pins = await res.json();
     dispatch(getPins(pins));
+  }
+};
+
+export const thunkGetPin = (pinId) => async (dispatch) => {
+  const res = await fetch(`/api/pins/${pinId}`);
+  if (res.ok) {
+    const pin = await res.json();
+    dispatch(getPin(pin));
+    return pin;
   }
 };
 
@@ -104,6 +121,13 @@ const initialState = {
 const pinsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PINS: {
+      const pinsArr = action.pins.pins;
+      console.log('--hh88', pinsArr)
+      let newState = { ...state };
+      pinsArr.forEach((pin) => (newState.pins[pin.id] = pin));
+      return newState;
+    }
+    case GET_PIN: {
       const pinsArr = action.pins.pins;
       let newState = { ...state };
       pinsArr.forEach((pin) => (newState.pins[pin.id] = pin));

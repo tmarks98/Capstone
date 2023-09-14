@@ -1,23 +1,25 @@
-import { MyPins } from "../Pins";
 import { thunkGetPins } from "../../store/pin";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import CreatePinButton from "../CreatePinButton"
+import { PinsFeed } from "../PinsFeed"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Masonry from 'react-masonry-css'
 import './index.css'
 
-export default function PinViews() {
+export default function PinFeedViews() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const pinsObj = useSelector((state) => state.pins);
   const pinValues = Object.values(pinsObj.pins);
-  const sessionUser = useSelector((state) => state.session.user);
-  const pinOwner = pinValues.filter((pin) => pin.userId === sessionUser.id);
 
   const columnsObj = {
     default: 7,
-    1100: 2,
-    700: 1,
+    1700: 6,
+    1500: 5,
+    1300: 4,
+    1000: 3,
+    650: 2,
   }
 
   useEffect(() => {
@@ -26,14 +28,15 @@ export default function PinViews() {
 
   return (
     <div>
-    <CreatePinButton />
+    <button onClick={() => history.push("/mypins")}>MY PINS!</button>
+    <button onClick={() => history.push("/myboards")}>MY BOARDS!</button>
     <Masonry
     breakpointCols={columnsObj}
-    className="my-pins-masonry-grid"
-    columnClassName="my-pins-masonry-grid_column"
+    className="my-pinfeed-masonry-grid"
+    columnClassName="my-pinfeed-masonry-grid_column"
     >
-      {pinOwner.map((ele) => {
-        return <MyPins key={ele.id} pin={ele} imageUrl={ele.imageUrl}/>;
+      {pinValues.map((ele) => {
+        return <PinsFeed key={ele.id} pin={ele} imageUrl={ele.imageUrl}/>;
       })}
     </Masonry>
     </div>

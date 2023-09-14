@@ -1,0 +1,12 @@
+.each-my-pin {
+    border: blue 1px solid;
+    padding: 7px;
+    margin-top: 5px;
+    background-color: #fca3a3;
+  }
+
+#mypin-img-pin {
+    width: 250px;
+    border: rgb(255, 0, 0) 2px solid
+}
+

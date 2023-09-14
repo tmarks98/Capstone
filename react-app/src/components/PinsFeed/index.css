@@ -1,0 +1,10 @@
+.each-feed-pin {
+    border: blue 1px solid;
+    padding: 7px;
+    margin-top: 5px;
+    background-color: #fca3a3;
+  }
+
+#pinfeed-img-pin {
+    width: 250px;
+}
