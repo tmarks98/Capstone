@@ -30,7 +30,7 @@ export function CreatePin() {
     e.preventDefault();
     formData.user_id = sessionUser.id;
     dispatch(thunkPostPins(formData));
-    history.push("/")
+    history.push("/mypins")
   };
 
   return (
