@@ -1,6 +1,6 @@
 .signup-modal {
     width: 500px;
-    height: 750px;
+    height: fit-content;
     border-radius: 20px;
     display: flex;
     background-color: rgb(80, 196, 242);
@@ -34,6 +34,7 @@
     color: rgb(80, 196, 242);
     margin-top: 11px;
     cursor: pointer;
+    margin-bottom: 12px;
   }
   .signup-modal-username {
     width: 95%;
@@ -74,3 +75,7 @@
     opacity: 1;
   }
   
+  .signup-errors {
+    color: rgb(238, 19, 19);
+    font-size: 15px;
+  }

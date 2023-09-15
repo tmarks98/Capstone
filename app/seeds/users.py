@@ -112,8 +112,10 @@ def seed_users():
         user_id='3', body='Relax on a secluded beach cove.', title='Secluded Beach Cove', main_pic='https://cdn.discordapp.com/attachments/1141883194111688739/1150542587095154688/pic52.jpg')
     pin50 = Pin(
         user_id='3', body='Experience the charm of a Tuscan villa.', title='Charming Tuscan Villa', main_pic='https://cdn.discordapp.com/attachments/1141883194111688739/1150542587334234204/pic53.jpg')
+    pin51 = Pin(
+        user_id='3', body='Aye yo', title='whaaaaaaaaaat?', main_pic='https://cdn.discordapp.com/attachments/1141883194111688739/1150542587636228217/pic54.jpg')
     board1 = Board(
-        user_id='1', title='Desert Adventure Dunes', coverpic='https://cdn.discordapp.com/attachments/1141883194111688739/1150542587636228217/pic54.jpg')
+        user_id='1', title='Desert Adventure Dunes', coverpic='https://64.media.tumblr.com/6b22f93e211b8f4d967074773960a706/tumblr_mqpifljNP61sxviy0o1_250.gifv')
     board2 = Board(
         user_id='1', title='Rural Farmhouse Escape', coverpic='https://cdn.discordapp.com/attachments/1141883194111688739/1150542587908849766/pic55.jpg')
     board3 = Board(
@@ -137,7 +139,7 @@ def seed_users():
     pin11, pin12, pin13, pin14, pin15, pin16, pin17, pin18, pin19, pin20,
     pin21, pin22, pin23, pin24, pin25, pin26, pin27, pin28, pin29, pin30,
     pin31, pin32, pin33, pin34, pin35, pin36, pin37, pin38, pin39, pin40,
-    pin41, pin42, pin43, pin44, pin45, pin46, pin47, pin48, pin49, pin50])
+    pin41, pin42, pin43, pin44, pin45, pin46, pin47, pin48, pin49, pin50, pin51])
     db.session.add_all([
     board1, board2, board3, board4, board5, board6, board7, board8])
     db.session.commit()

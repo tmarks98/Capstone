@@ -9,6 +9,7 @@ function LoginFormModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [isErrors, setIsErrors] = useState(false)
   const { closeModal } = useModal();
 
 const demoUser = async (e) => {
@@ -17,7 +18,7 @@ const demoUser = async (e) => {
   let password = 'password'
   const data = await dispatch(login(email, password));
   if (data) {
-    setErrors(data);
+    setErrors('Invalid credentials, please try again.');
   } else {
       closeModal()
   }
@@ -28,11 +29,15 @@ const demoUser = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors('Invalid credentials');
     } else {
         closeModal()
     }
   };
+
+  const emailRed = errors.length > 0 ? "login-modal-email-red" : "login-modal-username"
+  const passwordRed = errors.length > 0 ? "login-modal-password-red" : "login-modal-password"
+
 
   return (
     <div style={{backgroundColor: 'rgb(76, 76, 76)'}}>
@@ -41,14 +46,12 @@ const demoUser = async (e) => {
       <h1 style={{color: 'white', fontSize: '43px', fontFamily: 'trebuchet ms'}}>Spinterest</h1>
       <p style={{color: 'white', margin: "0px"}}>Welcome, you'll never be bored again.</p>
       <form className='login-modal-form' onSubmit={handleSubmit}>
-        <ul className="errors-list">
-          {errors.map((error, idx) => (
-            <li className="errors" key={idx}>{error}</li>
-          ))}
-        </ul>
+        <div className="errors-message">
+          {errors}
+        </div>
         <label className="login-modal-labels">
           <input
-            className="login-modal-username"
+            className={emailRed}
             placeHolder='Email'
             type="text"
             value={email}
@@ -58,7 +61,7 @@ const demoUser = async (e) => {
         </label>
         <label className="login-modal-labels">
           <input
-            className="login-modal-password"
+            className={passwordRed}
             placeHolder=' Password'
             type="password"
             value={password}

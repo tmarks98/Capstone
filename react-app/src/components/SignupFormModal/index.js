@@ -28,7 +28,7 @@ function SignupFormModal() {
 			]);
 		}
 	};
-
+	
 	return (
 		<div style={{backgroundColor: 'rgb(76, 76, 76)'}}>
 		<div className="signup-modal">
@@ -36,11 +36,11 @@ function SignupFormModal() {
 		<h1 style={{color: 'white', fontSize: '43px', fontFamily: 'trebuchet ms'}}>Spinterest</h1>
 		<p style={{color: 'white', margin: "0px"}}>Welcome, you'll never be bored again.</p>
 			<form className='signup-modal-form' onSubmit={handleSubmit}>
-				<ul className="errors-list">
-					{errors.map((error, idx) => (
-						<li className="errors" key={idx}>{error}</li>
+				<div className="errors-list">
+					{Object.values(errors).map((error, idx) => (
+						<div className="signup-errors" key={idx}>{error}</div>
 					))}
-				</ul>
+				</div>
 				<label className="signup-modal-labels">
 					<input
 						className="signup-modal-username"
@@ -51,6 +51,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{console.log('--ERRORS', errors)}
 				<label className="signup-modal-labels">
 					<input
 						className="signup-modal-username"
