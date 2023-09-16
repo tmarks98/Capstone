@@ -15,11 +15,12 @@ export default function PinFeedViews() {
 
   const columnsObj = {
     default: 7,
-    1700: 6,
+    1750: 6,
     1500: 5,
-    1300: 4,
-    1000: 3,
-    650: 2,
+    1265: 4,
+    1020: 3,
+    775: 2,
+    525: 1,
   }
 
   useEffect(() => {

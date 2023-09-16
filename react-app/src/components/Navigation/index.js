@@ -4,28 +4,25 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import CreatePinButton from "../CreatePinButton";
 import "./Navigation.css";
-import CreateBoardButton from "../CreateBoardButton"
+import { TbSquareRoundedLetterS } from "react-icons/tb"; 
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
-    <ul>
-      <li>
+    <div className="nav-bar">
+      <div className="nav-bar-left-side">
         <NavLink exact to="/">
-          Home
+          <TbSquareRoundedLetterS size={26} className='nav-bar-logo' />
         </NavLink>
-      </li>
+        <div>{sessionUser && <CreatePinButton />}</div>
+      </div>
       {isLoaded && (
         <div>
-          <div>
-            <ProfileButton user={sessionUser} />
-          </div>
-          {/* <div>{sessionUser && <CreatePinButton />}</div>
-          <div>{sessionUser && <CreateBoardButton />}</div> */}
+          <ProfileButton user={sessionUser} />
         </div>
       )}
-    </ul>
+    </div>
   );
 }
 

@@ -8,11 +8,7 @@ export function PinsFeed({ pin }) {
   return (
     <div>
         <div className="each-feed-pin" onClick={() => history.push(`/pins/${pin.id}`)}>
-          <img id='pinfeed-img-pin' src={pin.mainPic} alt="" />
-          {/* <div>
-            <p>{pin.title}</p>
-            <p>{pin.body}</p>
-          </div> */}
+          <img className="each-feed-pin-img" src={pin.mainPic} alt="" />
         </div>
     </div>
   );

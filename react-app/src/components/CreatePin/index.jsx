@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { thunkPostPins } from "../../store/pin";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import "./index.css";
 
 export function CreatePin() {
   const history = useHistory();
@@ -30,13 +31,12 @@ export function CreatePin() {
     e.preventDefault();
     formData.user_id = sessionUser.id;
     dispatch(thunkPostPins(formData));
-    history.push("/mypins")
+    history.push("/mypins");
   };
 
   return (
     <div>
-      <h2>Create a New Pin</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="create-pin-form">
         <input type="hidden" name="user_id" value={sessionUser.id} />
         <input
           placeholder="Image URL"
@@ -53,16 +53,22 @@ export function CreatePin() {
           />
         )}
         <input
+          placeholder="Title"
           type="text"
           name="title"
           value={formData.title}
           onChange={handleChange}
         />
-        <input name="body" value={formData.body} onChange={handleChange} />
+        <input
+          placeholder="Description"
+          name="body"
+          value={formData.body}
+          onChange={handleChange}
+        />
         <button type="submit">Create Pin</button>
       </form>
     </div>
   );
 }
 
-export default CreatePin
+export default CreatePin;

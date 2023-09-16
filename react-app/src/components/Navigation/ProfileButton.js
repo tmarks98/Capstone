@@ -4,10 +4,13 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import "./ProfileButton.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -39,18 +42,16 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+    <div style={{backgroundColor: 'rgb(113, 123, 106)'}}>
+      <img className='pfp-menu-pic' onClick={() => history.push('/mypins')} src={user.profilePic} alt="" />
+      <button className='img-bttn-pfp' onClick={openMenu}>
+        <MdOutlineKeyboardArrowDown size={45} />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
+              <p onClick={() => history.push("/mypins")}>My profile</p>
               <button onClick={handleLogout}>Log Out</button>
-            </li>
           </>
         ) : (
           <>
@@ -67,8 +68,8 @@ function ProfileButton({ user }) {
             />
           </>
         )}
-      </ul>
-    </>
+      </div>
+    </div>
   );
 }
 

@@ -5,3 +5,20 @@
 .hidden {
   display: none;
 }
+
+.nav-bar-logo {
+  color: red;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-bar-left-side {
+  display: flex;
+  justify-content: space-between;
+  width: 120px;
+  padding: 5px;
+}

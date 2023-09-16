@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import CreatePinButton from "../CreatePinButton"
 import Masonry from 'react-masonry-css'
 import './index.css'
+import ProfilePage from "../ProfilePage";
 
 export default function PinViews() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export default function PinViews() {
 
   return (
     <div>
+      <ProfilePage />
     <CreatePinButton />
     <Masonry
     breakpointCols={columnsObj}

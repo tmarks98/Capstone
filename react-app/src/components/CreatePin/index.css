@@ -1,0 +1,13 @@
+.create-pin-form {
+    position: absolute;
+    right: 30%;
+    left: 30%;
+    height: 600px;
+    width: 600px;
+    border: red 1px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 100px;
+    margin-right: 100px;
+}

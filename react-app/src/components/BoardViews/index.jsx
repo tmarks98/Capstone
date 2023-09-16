@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import CreateBoard from "../CreateBoard";
+import ProfilePage from "../ProfilePage";
 
 export default function BoardViews() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export default function BoardViews() {
 
   return (
     <div>
+      <ProfilePage />
         <CreateBoard />
       {boardOwner.map((ele) => {
         return <MyBoards board={ele} />;

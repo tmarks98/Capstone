@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import { CreatePin } from "./components/CreatePin";
@@ -12,11 +13,14 @@ import PinInfoViews from "./components/PinInfoView";
 
 function App() {
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  const isLoggedIn = !!sessionUser;
   return (
     <>
       <Navigation isLoaded={isLoaded} />
@@ -26,19 +30,22 @@ function App() {
             <PinFeedViews />
           </Route>
           <Route path="/pins/new">
-            <CreatePin />
+            {isLoggedIn ? <CreatePin /> : <Redirect to="/" />}
           </Route>
           <Route path="/myboards">
-            <BoardViews />
+            {isLoggedIn ? <BoardViews /> : <Redirect to="/" />}
           </Route>
           <Route path="/mypins">
-            <PinViews />
+            {isLoggedIn ? <PinViews /> : <Redirect to="/" />}
           </Route>
           <Route path="/mypins/edit/:pinId">
-            <EditPin />
+            {isLoggedIn ? <EditPin /> : <Redirect to="/" />}
           </Route>
           <Route path="/pins/:pinId">
             <PinInfoViews />
+          </Route>
+          <Route>
+            <Redirect to="/" />
           </Route>
         </Switch>
       )}
