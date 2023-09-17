@@ -1,0 +1,15 @@
+.fgh24 {
+    background-color: rgb(113, 123, 106);
+    border: none;
+    font-size: 15px;
+    color: rgb(95, 67, 81);
+    font-weight: bolder;
+}
+
+.fgh24:hover {
+    background-color: rgb(113, 123, 106);
+    border: none;
+    font-size: 15px;
+    color: rgb(199, 60, 130);
+    font-weight: bolder;
+}

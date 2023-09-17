@@ -1,0 +1,63 @@
+.edit-board-modal {
+    border: rgb(0, 0, 0) 1px solid;
+    width: 350px;
+    height: 195px;
+}
+
+.edit-board-title {
+    width: 348px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: rgb(0, 0, 0);
+}
+
+.edit-board-form {
+    width: 348px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+}
+
+.asdf1 {
+    width: 250px;
+    margin-top: 10px;
+    height: 20px;
+}
+
+.asdf11 {
+    width: 250px;
+    height: 25px;
+    border: black solid 1px;
+    border-radius: 10px;
+    background-color: rgb(189, 189, 189);
+}
+
+.asdf2 {
+    width: 250px;
+    margin-top: 15px;
+}
+
+.asdf22 {
+    width: 250px;
+    height: 25px;
+    border: black solid 1px;
+    border-radius: 10px;
+    background-color: rgb(189, 189, 189);
+}
+
+.asdf3 {
+    width: 250px;
+    margin-top: 10px;
+}
+
+.asdf33 {
+    width: 255px;
+    height: 25px;
+    border: black solid 1px;
+    border-radius: 10px;
+    background-color: rgb(189, 189, 189);
+    font-size: 15px;
+    font-weight: bolder;
+}

@@ -9,7 +9,6 @@ import EditPin from "./components/EditPin";
 import PinViews from "./components/PinViews";
 import BoardViews from "./components/BoardViews";
 import PinFeedViews from "./components/PinFeedViews";
-import PinInfoViews from "./components/PinInfoView";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,9 +39,6 @@ function App() {
           </Route>
           <Route path="/mypins/edit/:pinId">
             {isLoggedIn ? <EditPin /> : <Redirect to="/" />}
-          </Route>
-          <Route path="/pins/:pinId">
-            <PinInfoViews />
           </Route>
           <Route>
             <Redirect to="/" />

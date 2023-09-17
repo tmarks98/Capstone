@@ -1,12 +1,17 @@
 import React from "react-redux";
+import { useHistory } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton";
+import "./index.css";
 
 
 export default function PinInfo() {
+    let history = useHistory();
+
 
     return (
         <div>
-            {console.log('555')}
-            eeeee
+            <OpenModalButton modalComponent={<CreateBoard />}
+      />
         </div>
     )
 }

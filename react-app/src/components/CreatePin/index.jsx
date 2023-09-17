@@ -9,12 +9,32 @@ export function CreatePin() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [imagePreview, setImagePreview] = useState(null);
+  const [titleError, setTitleError] = useState("");
+  const [bodyError, setBodyError] = useState("");
   const [formData, setFormData] = useState({
     user_id: "",
     main_pic: "",
     title: "",
     body: "",
   });
+
+  const validateTitle = (title) => {
+    if (title.length < 3 || title.length > 35) {
+      setTitleError("Title must be between 3 and 35 characters.");
+      return false;
+    }
+    setTitleError("");
+    return true;
+  };
+
+  const validateBody = (body) => {
+    if (body.length < 3 || body.length > 120) {
+      setBodyError("Body must be between 3 and 120 characters.");
+      return false;
+    }
+    setBodyError("");
+    return true;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,43 +49,70 @@ export function CreatePin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    formData.user_id = sessionUser.id;
-    dispatch(thunkPostPins(formData));
-    history.push("/mypins");
+    const isTitleValid = validateTitle(formData.title);
+    const isBodyValid = validateBody(formData.body);
+
+    if (isTitleValid && isBodyValid) {
+      formData.user_id = sessionUser.id;
+      dispatch(thunkPostPins(formData));
+      history.push("/mypins");
+    }
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit} className="create-pin-form">
         <input type="hidden" name="user_id" value={sessionUser.id} />
+        <div className="create-pin-form0">
+          Create a New Pin
+        </div>
+        <div className="create-pin-form1">
         <input
+        className="create-pin-form11"
           placeholder="Image URL"
           type="text"
           name="main_pic"
           value={formData.main_pic}
           onChange={handleImageChange}
         />
+        </div>
+        <div className="create-pin-form2">
         {imagePreview && (
           <img
+          className="create-pin-form22"
             src={imagePreview}
             alt="Image Preview"
-            style={{ maxWidth: "400px", maxHeight: "400px" }}
           />
         )}
+        </div>
+        <div className="create-pin-form3">
         <input
+        className="create-pin-form33"
           placeholder="Title"
           type="text"
           name="title"
           value={formData.title}
           onChange={handleChange}
         />
+        </div>
+        <div className="create-pin-form333">
+        {titleError && <div className="error">{titleError}</div>}
+        </div>
+        <div className="create-pin-form4">
         <input
+        className="create-pin-form44"
           placeholder="Description"
           name="body"
           value={formData.body}
           onChange={handleChange}
         />
-        <button type="submit">Create Pin</button>
+        </div>
+        <div className="create-pin-form444">
+        {bodyError && <div className="error">{bodyError}</div>}
+        </div>
+        <div>
+        <button className="create-pin-form5" type="submit">Create Pin</button>
+        </div>
       </form>
     </div>
   );

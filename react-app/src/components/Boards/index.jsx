@@ -11,7 +11,7 @@ export function MyBoards({ board }) {
   const [coverpic, setCoverpic] = useState(board.coverpic);
   const [title, setTitle] = useState(board.title);
   const [isBoardDeleted, setIsBoardDeleted] = useState(false);
-  console.log("isBoardDeleted??", isBoardDeleted);
+
   const closeMenu = (e) => {
     if (!ulRef.current.contains(e.target)) {
       setShowMenu(false);
@@ -25,34 +25,31 @@ export function MyBoards({ board }) {
   return (
     <div className="board-page">
       <div key={board.id} className="my-board-div">
-        <img
-          id="my-board-coverpic"
-          style={{ width: "200px" }}
-          src={coverpic}
-          alt=""
-        />
-        <div>
+        <img id="my-board-coverpic" src={coverpic} alt="" />
+        <div className="lkll4">
           <p>{title}</p>
         </div>
-        <OpenModalButton
-          buttonText="Edit"
-          modalComponent={
-            <EditBoard
-              board={board}
-              coverpic={coverpic}
-              setCoverpic={setCoverpic}
-              title={title}
-              setTitle={setTitle}
-            />
-          }
-        />
-        <OpenModalButton
-          buttonText="Delete"
-          onItemClick={closeMenu}
-          modalComponent={
-            <DeleteBoard board={board} onDelete={onBoardDelete} />
-          }
-        />
+        <div className="edit-board-buttons">
+          <OpenModalButton
+            buttonText="Edit"
+            modalComponent={
+              <EditBoard
+                board={board}
+                coverpic={coverpic}
+                setCoverpic={setCoverpic}
+                title={title}
+                setTitle={setTitle}
+              />
+            }
+          />
+          <OpenModalButton
+            buttonText="Delete"
+            onItemClick={closeMenu}
+            modalComponent={
+              <DeleteBoard board={board} onDelete={onBoardDelete} />
+            }
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,10 +1,10 @@
-.my-pinfeed-masonry-grid {
+.my-pinfeed-masonry-grid1 {
   display: flex;
   justify-content: space-around;
   align-content: flex-start;
   width: auto;
 }
 
-.my-pinfeed-masonry-grid_column {
+.my-pinfeed-masonry-grid_column1 {
   padding-left: 5px;
 }

@@ -1,12 +1,29 @@
 .each-my-pin {
-    border: blue 1px solid;
-    padding: 7px;
-    margin-top: 5px;
-    background-color: #fca3a3;
-  }
-
-#mypin-img-pin {
-    width: 250px;
-    border: rgb(255, 0, 0) 2px solid
+  width: 240px;
+  padding: 7px;
+  margin-top: 5px;
 }
 
+.each-my-pin-img {
+  width: 240px;
+  border-radius: 20px;
+}
+
+.edit-delete-button-mypin {
+  display: flex;
+  justify-content: space-between;
+}
+
+.each-my-pin-title {
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 19px;
+  word-wrap: break-word;
+}
+
+.each-my-pin-body {
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 15px;
+  word-wrap: break-word;
+}

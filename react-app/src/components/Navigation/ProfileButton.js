@@ -43,7 +43,7 @@ function ProfileButton({ user }) {
 
   return (
     <div style={{backgroundColor: 'rgb(113, 123, 106)'}}>
-      <img className='pfp-menu-pic' onClick={() => history.push('/mypins')} src={user.profilePic} alt="" />
+      {user ? (<img className='pfp-menu-pic' onClick={() => history.push('/mypins')} src={user.profilePic} alt="" />):''}
       <button className='img-bttn-pfp' onClick={openMenu}>
         <MdOutlineKeyboardArrowDown size={45} />
       </button>

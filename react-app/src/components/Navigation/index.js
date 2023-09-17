@@ -13,7 +13,7 @@ function Navigation({ isLoaded }) {
     <div className="nav-bar">
       <div className="nav-bar-left-side">
         <NavLink exact to="/">
-          <TbSquareRoundedLetterS size={26} className='nav-bar-logo' />
+          <TbSquareRoundedLetterS size={30} className='nav-bar-logo' />
         </NavLink>
         <div>{sessionUser && <CreatePinButton />}</div>
       </div>

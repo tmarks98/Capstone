@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { thunkPostBoards } from "../../store/board";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import "./index.css";
 
-
-export function CreateBoard() {
+export function CreateBoard({ onClose }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -33,34 +33,51 @@ export function CreateBoard() {
   };
 
   return (
-    <div>
-      <h2>Create a New Board</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="hidden" name="user_id" value={sessionUser.id} />
-        <input
-          placeholder="Image URL"
-          type="text"
-          name="coverpic"
-          value={formData.coverpic}
-          onChange={handleImageChange}
-        />
-        {imagePreview && (
-          <img
-            src={imagePreview}
-            alt="Image Preview"
-            style={{ maxWidth: "400px", maxHeight: "400px" }}
-          />
-        )}
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-        />
-        <button type="submit">Create Board</button>
-      </form>
+    <div className="create-board-modal">
+      <div className="create-board-title">
+        <h2>Create a New Board</h2>
+      </div>
+      <div className="create-board-form">
+        <form onSubmit={handleSubmit}>
+          <input type="hidden" name="user_id" value={sessionUser.id} />
+          <div className="gfd1">
+            <input
+              className="gfd11"
+              placeholder="Image URL"
+              type="text"
+              name="coverpic"
+              value={formData.coverpic}
+              onChange={handleImageChange}
+            />
+          </div>
+          <div className="gfd2">
+            {imagePreview && (
+              <img
+                className="gfd22"
+                src={imagePreview}
+                alt=" - Invalid Link! "
+              />
+            )}
+          </div>
+          <div className="gfd3">
+            <input
+            placeholder="Title"
+              className="gfd33"
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="gfd4">
+            <button className="gfd44" type="submit">
+              Create Board
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
 
-export default CreateBoard
+export default CreateBoard;

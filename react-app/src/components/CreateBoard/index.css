@@ -1,0 +1,82 @@
+.create-board-modal {
+    border: rgb(0, 0, 0) 1px solid;
+    width: 350px;
+    height: 600px;
+}
+
+.create-board-title {
+    width: 348px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: rgb(0, 0, 0);
+    border: red 1px solid;
+}
+
+.create-board-form {
+    width: 348px;
+    border: red 1px solid;
+    height: 536px;
+    display: flex;
+    justify-content: center;
+}
+
+.gfd1 {
+    width: 300px;
+    margin-top: 10px;
+    height: 20px;
+}
+
+.gfd11 {
+    width: 300px;
+    height: 25px;
+    border: black solid 1px;
+    border-radius: 10px;
+    background-color: rgb(189, 189, 189);
+}
+
+.gfd2 {
+    width: 300px;
+    margin-top: 15px;
+    height: 400px;
+    margin-top: 16px;
+}
+
+.gfd22 {
+    width: 300px;
+    height: 400px;
+    border: black solid 1px;
+    border-radius: 10px;
+    background-color: rgb(189, 189, 189);
+}
+
+.gfd3 {
+    width: 300px;
+    margin-top: 10px;
+}
+
+.gfd33 {
+    width: 300px;
+    height: 25px;
+    border: black solid 1px;
+    border-radius: 10px;
+    background-color: rgb(189, 189, 189);
+    font-size: 15px;
+    padding-left: 5px;
+}
+
+.gfd4 {
+    width: 310px;
+    margin-top: 10px;
+}
+
+.gfd44 {
+    width: 310px;
+    height: 25px;
+    border: black solid 1px;
+    border-radius: 10px;
+    background-color: rgb(189, 189, 189);
+    font-size: 15px;
+    font-weight: bolder;
+}

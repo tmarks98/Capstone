@@ -1,13 +1,89 @@
 .create-pin-form {
     position: absolute;
     right: 30%;
-    left: 30%;
-    height: 600px;
-    width: 600px;
-    border: red 1px solid;
+    left: 35%;
+    height: 700px;
+    width: 400px;
+    border: rgb(0, 0, 0) 2px solid;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin-left: 100px;
     margin-right: 100px;
+    background-color: rgb(122, 122, 122);
+}
+
+.create-pin-form0 {
+    font-size: 25px;
+    height: 32px;
+    width: fit-content;
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
+
+.create-pin-form1 {
+    margin-bottom: 10px;
+}
+
+.create-pin-form11 {
+    border: none;
+    width: 350px;
+    height: 22px;
+    border-radius: 10px;
+}
+
+.create-pin-form2 {
+    width: 400px;
+    height: 500px;
+    margin-bottom: 10px;
+}
+
+.create-pin-form22 {
+    width: 399px;
+    height: 500px
+}
+
+.create-pin-form3 {
+    
+}
+
+.create-pin-form33 {
+    border: none;
+    width: 350px;
+    height: 22px;
+    border-radius: 10px;
+}
+
+.create-pin-form333 {
+    border: none;
+    width: 350px;
+    height: 22px;
+    color: red;
+}
+
+.create-pin-form44 {
+    border: none;
+    width: 350px;
+    height: 22px;
+    border-radius: 10px;
+}
+
+.create-pin-form444 {
+    border: none;
+    width: 350px;
+    height: 22px;
+    color: red;
+}
+
+.create-pin-form5 {
+    border: none;
+    width: 100px;
+    height: 22px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    font-size: 16px;
 }

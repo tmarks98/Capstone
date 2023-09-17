@@ -1,15 +1,19 @@
-#my-board-coverpic {
-    width: 250px;
-    border: rgb(255, 0, 0) 2px solid;
-}
-
 .my-board-div {
-    border: blue 1px solid;
-    padding: 7px;
-    margin-top: 5px;
-    background-color: #fca3a3;
+  padding: 7px;
+  margin-top: 5px;
+  width: 240px;
 }
 
-.board-page {
-    display: flex; 
+#my-board-coverpic {
+  max-width: 240px;
+  border-radius: 20px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.lkll4 {
+  margin-left: 10px;
+  font-size: 14px;
+  color: rgb(65, 61, 61);
+  font-weight: bold;
 }

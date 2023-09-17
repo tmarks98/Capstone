@@ -10,6 +10,7 @@ function DeleteBoard({ board, onDelete }) {
 
   const handleDelete = (e) => {
     e.preventDefault();
+    onDelete();
     dispatch(thunkDeleteBoard(board.id));
     onDelete();
     closeModal();
