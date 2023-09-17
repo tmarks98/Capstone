@@ -18,10 +18,10 @@
 }
 
 .profile-dropdown {
-    background-color: white;
+    background-color: rgb(113, 123, 106);
     border: 3px solid black;
     padding: 0px 6px 8px 7px;
-    width: 75px;
+    width: 80px;
     position: absolute;   
     margin-top: 5px;
     font-weight: bold;
@@ -33,4 +33,11 @@
 .img-bttn-pfp {
     background-color: rgb(113, 123, 106);
     border: none
+}
+
+.ertf {
+    background-color: rgb(113, 123, 106);
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
 }

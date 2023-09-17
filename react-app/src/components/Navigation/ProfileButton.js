@@ -36,25 +36,31 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    closeMenu();
   };
+
+  const profilePicButton = () => {
+    closeMenu();
+    history.push('/mypins')
+  }
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (
     <div style={{backgroundColor: 'rgb(113, 123, 106)'}}>
-      {user ? (<img className='pfp-menu-pic' onClick={() => history.push('/mypins')} src={user.profilePic} alt="" />):''}
+      {user ? (<img className='pfp-menu-pic' onClick={() => history.push("/mypins")} src={user.profilePic || 'https://wallpapers-clan.com/wp-content/uploads/2023/05/cool-pfp-19.jpg'} alt="" />):''}
       <button className='img-bttn-pfp' onClick={openMenu}>
         <MdOutlineKeyboardArrowDown size={45} />
       </button>
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-              <p onClick={() => history.push("/mypins")}>My profile</p>
-              <button onClick={handleLogout}>Log Out</button>
+              <p onClick={profilePicButton}>My profile</p>
+              <button className="ertf" onClick={handleLogout}>Log Out</button>
           </>
         ) : (
-          <>
+          <div>
             <OpenModalButton
               buttonText="Log In"
               onItemClick={closeMenu}
@@ -66,7 +72,7 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
-          </>
+          </div>
         )}
       </div>
     </div>

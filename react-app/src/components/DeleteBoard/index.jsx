@@ -17,17 +17,17 @@ function DeleteBoard({ board, onDelete }) {
   };
 
   return(
-    <div id="confirm-delete-board-container">
+    <div className="confirm-delete-container">
       <h2>Are you sure you want to delete your board?</h2>
-      <div id="confirm-delete-board-buttons-container">
+      <div className="confirm-delete-buttons-container">
         <button
-        id="no-button"
-        onClick={closeModal}
-        >Cancel</button>
-        <button
-        id="yes-button"
+        className="yes-button"
         onClick={handleDelete}
         >Ok</button>
+        <button
+        className="no-button"
+        onClick={closeModal}
+        >Cancel</button>
       </div>
     </div>
   )

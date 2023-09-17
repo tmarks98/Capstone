@@ -17,17 +17,17 @@ function DeletePin({ pin, onDelete }) {
   };
 
   return(
-    <div id="confirm-delete-pin-container">
+    <div className="confirm-delete-pin-container">
       <h2>Are you sure you want to delete your pin?</h2>
-      <div id="confirm-delete-pin-buttons-container">
+      <div className="confirm-delete-pin-buttons-container">
         <button
-        id="no-button"
-        onClick={closeModal}
-        >Cancel</button>
-        <button
-        id="yes-button"
+        className="yes-button"
         onClick={handleDelete}
         >Ok</button>
+        <button
+        className="no-button"
+        onClick={closeModal}
+        >Cancel</button>
       </div>
     </div>
   )

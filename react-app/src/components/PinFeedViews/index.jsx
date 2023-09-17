@@ -29,8 +29,6 @@ export default function PinFeedViews() {
 
   return (
     <div>
-    <button onClick={() => history.push("/mypins")}>MY PINS!</button>
-    <button onClick={() => history.push("/myboards")}>MY BOARDS!</button>
     <Masonry
     breakpointCols={columnsObj}
     className="my-pinfeed-masonry-grid"

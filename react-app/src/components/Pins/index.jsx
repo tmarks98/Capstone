@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import EditPin from "../EditPin";
+import { useModal } from "../../context/Modal";
 import { useRef } from "react";
 import OpenModalButton from "../OpenModalButton";
 import DeletePin from "../DeletePin";
@@ -12,6 +13,7 @@ export function MyPins({ pin }) {
   const [title, setTitle] = useState(pin.title);
   const [body, setBody] = useState(pin.body);
   const [isDeleted, setIsDeleted] = useState(false);
+  const { setModalContent, closeModal } = useModal();
 
   const closeMenu = (e) => {
     if (!ulRef.current.contains(e.target)) {
@@ -23,16 +25,27 @@ export function MyPins({ pin }) {
     setIsDeleted(true);
   };
 
+  const openModal = () => {
+    setModalContent(
+      <div className="pin-feed-modal">
+        <div className="fsr1">
+          <img className="pin-feed-modal-img" src={pin.mainPic} alt="" />
+        </div>
+        <div className="fsr2">{title}</div>
+        <div className="fsr3">{body}</div>
+        <div className="fsr4">
+          <button onClick={closeModal} className="pin-feed-modal-close-button">
+            Close
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div>
       <div key={pin.id} className="each-my-pin">
-        <img className="each-my-pin-img" id="mypin-img-pin" src={url} alt="" />
-        <div className="each-my-pin-title">
-          <p>{title}</p>
-        </div>
-        <div className="each-my-pin-body">
-          <p>{body}</p>
-        </div>
+        <img className="each-my-pin-img" onClick={openModal} id="mypin-img-pin" src={url} alt="" />
         <div className="edit-delete-button-mypin">
         <OpenModalButton
           buttonText="Edit"

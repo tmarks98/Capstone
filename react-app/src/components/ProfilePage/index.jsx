@@ -10,7 +10,7 @@ export default function ProfilePage() {
   return (
     <div className="profile-page">
       <div className="profile-page-pic">
-        <img className='pfp-img' src={user.profilePic} alt="" />
+        <img className='pfp-img' src={user.profilePic || 'https://wallpapers-clan.com/wp-content/uploads/2023/05/cool-pfp-19.jpg'} alt="" />
         {console.log("EEEEEEEEEE", user)}
       </div>
       <div className='pfp-username'>
