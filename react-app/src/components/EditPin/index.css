@@ -1,0 +1,91 @@
+.edit-pin-modal {
+    width: 350px;
+    height: 270px;
+}
+
+.edit-pin-form {
+
+    width: 350px;
+    height: 222px;
+}
+
+.asdfgh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.edit-pin-title {
+    width: 348px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: rgb(0, 0, 0);
+}
+
+.edit-pin-form {
+    width: 348px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-pin-form1 {
+    width: 250px;
+    margin-top: 10px;
+    height: 20px;
+}
+
+.edit-pin-form11 {
+    width: 250px;
+    height: 25px;
+    border: black solid 1px;
+    border-radius: 10px;
+    background-color: rgb(189, 189, 189);
+}
+
+.edit-pin-form2 {
+    width: 250px;
+    margin-top: 15px;
+}
+
+.edit-pin-form22 {
+    width: 250px;
+    height: 25px;
+    border: black solid 1px;
+    border-radius: 10px;
+    background-color: rgb(189, 189, 189);
+}
+
+.edit-pin-form3 {
+    width: 250px;
+    
+    margin-top: 10px;
+}
+
+.edit-pin-form33 {
+    width: 255px;
+    height: 25px;
+    max-width: 250px;
+    max-height: 60px;
+    border: black solid 1px;
+    border-radius: 10px;
+    background-color: rgb(189, 189, 189);
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.edit-pin-form4 {
+    width: 250px;
+    margin-top: 10px;
+}
+
+.edit-pin-form44 {
+    width: 255px;
+    height: 25px;
+    border: black solid 1px;
+    border-radius: 10px;
+    background-color: rgb(189, 189, 189);
+    font-size: 15px;
+    font-weight: bolder;
+}

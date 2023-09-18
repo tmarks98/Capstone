@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { thunkPostBoards } from "../../store/board";
 import { useDispatch, useSelector } from "react-redux";
+import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import "./index.css";
 
 export function CreateBoard({ onClose }) {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { closeModal } = useModal();
   const sessionUser = useSelector((state) => state.session.user);
   const [imagePreview, setImagePreview] = useState(null);
   const [formData, setFormData] = useState({
@@ -29,7 +31,10 @@ export function CreateBoard({ onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     formData.user_id = sessionUser.id;
-    dispatch(thunkPostBoards(formData));
+    dispatch(thunkPostBoards(formData)).then(() => {
+      onClose();
+      closeModal();
+    });
   };
 
   return (

@@ -5,7 +5,6 @@ import CreateBoard from "../CreateBoard";
 import OpenModalButton from "../OpenModalButton";
 import { thunkGetBoards } from "../../store/board";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import "./index.css";
 
 export default function CreateBoardButton() {
@@ -37,6 +36,7 @@ export default function CreateBoardButton() {
           handleCloseModal();
           handleDataRefresh();
         }} />}
+        onModalClose={() => handleDataRefresh()}
       />
     </div>
   );
