@@ -60,7 +60,7 @@ def upgrade():
     # ### end Alembic commands ###
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        if environment == "production":
+    if environment == "production":
         op.execute(f"ALTER TABLE pins SET SCHEMA {SCHEMA};")
     if environment == "production":
         op.execute(f"ALTER TABLE boards SET SCHEMA {SCHEMA};")
