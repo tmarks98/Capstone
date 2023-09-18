@@ -41,9 +41,9 @@ export default function BoardViews() {
         className="my-pinfeed-masonry-grid1"
         columnClassName="my-pinfeed-masonry-grid_column1"
       >
-        {boardOwner.map((ele) => {
+        {boardOwner.length ? (boardOwner.map((ele) => {
           return <MyBoards key={ele.id} board={ele} />;
-        })}
+        })) : <div style={{width: '430px'}}>You currently have no boards, click above to create your first!</div>}
       </Masonry>
     </div>
   );

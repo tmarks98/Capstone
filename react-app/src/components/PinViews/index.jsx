@@ -40,9 +40,9 @@ export default function PinViews() {
         className="my-pins-masonry-grid"
         columnClassName="my-pins-masonry-grid_column"
       >
-        {pinOwner.map((ele) => {
+        {pinOwner.length ? ( pinOwner.map((ele) => {
           return <MyPins key={ele.id} pin={ele} imageUrl={ele.imageUrl} />;
-        })}
+        })) : <div style={{width: '430px'}}>You currently have no pins, click above to create your first!</div>}
       </Masonry>
     </div>
   );

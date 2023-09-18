@@ -26,11 +26,16 @@ function EditPin({ pin, url, setUrl, title, setTitle, body, setBody }) {
   };
   console.log("modal render");
   return (
-    <div>
+    <div className="edit-board-modal">
+      <div>
       <h2>Edit Pin</h2>
+      </div>
+      <div></div>
       <form onSubmit={handleSubmit}>
+
         <label>Main Picture URL:</label>
         <input
+        placeholder=""
           type="text"
           name="main_pic"
           value={localUrl}
