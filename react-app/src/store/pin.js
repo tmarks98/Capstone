@@ -122,7 +122,6 @@ const pinsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PINS: {
       const pinsArr = action.pins.pins;
-      console.log('--hh88', pinsArr)
       let newState = { ...state };
       pinsArr.forEach((pin) => (newState.pins[pin.id] = pin));
       return newState;
