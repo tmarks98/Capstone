@@ -54,7 +54,7 @@ export function CreatePin() {
 
     if (isTitleValid && isBodyValid) {
       formData.user_id = sessionUser.id;
-      dispatch(thunkPostPins(formData));
+      await dispatch(thunkPostPins(formData));
       history.push("/mypins");
     }
   };
