@@ -139,8 +139,8 @@ def callback():
         form['csrf_token'].data = request.cookies['csrf_token']
 
         user = User(
-            username=id_info.get("name"),
-            email=id_info.get("email"),
+            username=id_info.get["name"],
+            email=id_info.get["email"],
             password=GOOGLE_PASSWORD
         )
         db.session.add(user)
