@@ -22,12 +22,12 @@ client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret
 GOOGLE_PASSWORD = os.environ.get('GOOGLE_PASSWORD')
 # print("secret: ", client_secrets_file)
 
-REDIRECT_URI = "http://localhost:5000/api/auth/callback" if os.environ.get('FLASK_ENV') == 'development' else 'https://spinterest.onrender.com/api/auth/callback'
+REDIRECT_LINK = "http://localhost:5000/api/auth/callback" if os.environ.get('FLASK_ENV') == 'development' else 'https://spinterest.onrender.com/api/auth/callback'
 
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri=REDIRECT_URI
+    redirect_uri=REDIRECT_LINK
 )
 
 def validation_errors_to_error_messages(validation_errors):
