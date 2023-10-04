@@ -13,6 +13,12 @@ function LoginFormModal() {
   const [isErrors, setIsErrors] = useState(false);
   const { closeModal } = useModal();
 
+  const ENV = process.env.REACT_APP_ENV;
+  const OAUTH_URL =
+    ENV === "development"
+      ? "http://localhost:5000/api/auth/oauth_login"
+      : "https://spinterest.onrender.com";
+
   const demoUser = async (e) => {
     e.preventDefault();
     let email = "demo@aa.io";
@@ -86,7 +92,7 @@ function LoginFormModal() {
             Log In
           </button>
         </form>
-        <a className="efghj3" href="http://localhost:5000/api/auth/oauth_login">
+        <a className="efghj3" href={OAUTH_URL}>
           <button className="oauth-button">
             <div className="efghj1">
               <FcGoogle size={26} />
