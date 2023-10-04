@@ -14,6 +14,13 @@ function SignupFormModal() {
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
+	const ENV = process.env.REACT_APP_ENV;
+	const OAUTH_URL =
+	  ENV === "development"
+		? "http://localhost:5000/api/auth/oauth_login"
+		: "https://spinterest.onrender.com";
+
+		
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
@@ -85,7 +92,7 @@ function SignupFormModal() {
 				</label>
 				<button type="submit" className="signup-modal-button">Sign Up</button>
 			</form>
-			<a className="efghj3" href="http://localhost:5000/api/auth/oauth_login" style={{marginTop: '0px', marginBottom: '10px'}}>
+			<a className="efghj3" href={OAUTH_URL} style={{marginTop: '0px', marginBottom: '10px'}}>
           <button className="oauth-button">
             <div className="efghj1">
               <FcGoogle size={26} />
