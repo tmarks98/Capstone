@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
+import { FcGoogle } from "react-icons/fc";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -84,6 +85,14 @@ function SignupFormModal() {
 				</label>
 				<button type="submit" className="signup-modal-button">Sign Up</button>
 			</form>
+			<a className="efghj3" href="http://localhost:5000/api/auth/oauth_login" style={{marginTop: '0px', marginBottom: '10px'}}>
+          <button className="oauth-button">
+            <div className="efghj1">
+              <FcGoogle size={26} />
+            </div>
+            <div className="efghj2">Sign up with Google</div>
+          </button>
+        </a>
 			</div>
 		</div>
 	);
