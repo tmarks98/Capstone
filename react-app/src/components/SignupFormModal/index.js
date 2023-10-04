@@ -18,7 +18,7 @@ function SignupFormModal() {
 	const OAUTH_URL =
 	  ENV === "development"
 		? "http://localhost:5000/api/auth/oauth_login"
-		: "https://spinterest.onrender.com";
+		: "https://spinterest.onrender.com/api/auth/oauth_login";
 
 		
 	const handleSubmit = async (e) => {
