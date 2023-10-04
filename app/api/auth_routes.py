@@ -134,19 +134,20 @@ def callback():
     session["name"] = id_info.get("name")
 
     user123 = User.query.filter(User.email == id_info.get("email")).first()
+    FINAL_REDIRECT_URL = "http://localhost:3000/" if os.environ.get('FLASK_ENV') == 'development' else 'https://spinterest.onrender.com'
     if user123 == None:
         form = SignUpForm()
         form['csrf_token'].data = request.cookies['csrf_token']
 
         user = User(
-            username=id_info.get["name"],
-            email=id_info.get["email"],
+            username=id_info.get("name"),
+            email=id_info.get("email"),
             password=GOOGLE_PASSWORD
         )
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        return redirect("http://localhost:3000/")
+        return redirect(FINAL_REDIRECT_URL)
     form = LoginForm()
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
@@ -155,7 +156,6 @@ def callback():
     # Add the user to the session, we are logged in!
     user = User.query.filter(User.email == id_info.get("email")).first()
     login_user(user)
-    FINAL_REDIRECT_URL = "http://localhost:3000/" if os.environ.get('FLASK_ENV') == 'development' else 'https://spinterest.onrender.com'
 
     return redirect(FINAL_REDIRECT_URL) # This will send the final redirect to our user's browser. As depicted in Line 8 of the flow chart!
 
