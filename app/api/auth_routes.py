@@ -106,10 +106,10 @@ def unauthorized():
 
 @auth_routes.route("/callback")
 def callback():
-    flow.fetch_token(authorization_response=request.url) # This method is sending the request depicted on line 6 of our flow chart! The response is depicted on line 7 of our flow chart.
-    # I find it odd that the author of this code is verifying the 'state' AFTER requesting a token, but to each their own!!
+    # Fetching token
+    flow.fetch_token(authorization_response=request.url)
 
-    # This is our CSRF protection for the Oauth Flow!
+    # CSRF protection
     if not session["state"] == request.args["state"]:
         abort(500)  # State does not match!
 
@@ -118,47 +118,35 @@ def callback():
     cached_session = cachecontrol.CacheControl(request_session)
     token_request = google.auth.transport.requests.Request(session=cached_session)
 
-    # The method call below will go through the tedious work of verifying the JWT signature sent back with the object from OpenID Connect
-    # Although I cannot verify, hopefully it is also testing the values for "sub", "aud", "iat", and "exp" sent back in the CLAIMS section of the JWT
-    # Additionally note, that the oauth initializing URL generated in the previous endpoint DID NOT send a random nonce value. (As depicted in our flow chart)
-    # If it had, the server would return the nonce in the JWT claims to be used for further verification tests!
+    # Verifying the JWT signature
     id_info = id_token.verify_oauth2_token(
         id_token=credentials._id_token,
         request=token_request,
         audience=GOOGLE_CLIENT_ID
     )
 
-    # Now we generate a new session for the newly authenticated user!!
-    # Note that depending on the way your app behaves, you may be creating a new user at this point...
+    # Generating new session for the authenticated user
     session["google_id"] = id_info.get("sub")
     session["name"] = id_info.get("name")
 
-    user123 = User.query.filter(User.email == id_info.get("email")).first()
+    # Check if user exists
+    existing_user = User.query.filter(User.email == id_info["email"]).first()
     FINAL_REDIRECT_URL = "http://localhost:3000/" if os.environ.get('FLASK_ENV') == 'development' else 'https://spinterest.onrender.com'
-    if user123 == None:
-        form = SignUpForm()
-        form['csrf_token'].data = request.cookies['csrf_token']
 
+    # If user does not exist, create a new user
+    if not existing_user:
         user = User(
-            username=id_info.get("name"),
-            email=id_info.get("email"),
+            username=id_info["name"],
+            email=id_info["email"],
             password=GOOGLE_PASSWORD
         )
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        return redirect(FINAL_REDIRECT_URL)
-    form = LoginForm()
-    # Get the csrf_token from the request cookie and put it into the
-    # form manually to validate_on_submit can be used
-    form['csrf_token'].data = request.cookies['csrf_token']
+    else:
+        login_user(existing_user)
 
-    # Add the user to the session, we are logged in!
-    user = User.query.filter(User.email == id_info.get("email")).first()
-    login_user(user)
-
-    return redirect(FINAL_REDIRECT_URL) # This will send the final redirect to our user's browser. As depicted in Line 8 of the flow chart!
-
+    return redirect(FINAL_REDIRECT_URL) # Redirect to the frontend
 
 @auth_routes.route("/oauth_login")
 def oauth_login():
