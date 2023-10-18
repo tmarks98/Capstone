@@ -90,6 +90,16 @@ export const thunkEditBoards = (board, boardId) => async (dispatch) => {
   }
 };
 
+export const thunkAddPin = (data) => async (dispatch) => {
+  const res = await fetch(`/api/boards/add`, {
+      method: 'PUT',
+      headers:{
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+  })
+}
+
 export const thunkDeleteBoard = (boardId) => async (dispatch) => {
   const res = await fetch(`/api/boards/${boardId}`, {
     method: "DELETE",

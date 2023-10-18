@@ -52,7 +52,7 @@ function SignupFormModal() {
 				<label className="signup-modal-labels">
 					<input
 						className="signup-modal-username"
-						placeHolder=' Email'
+						placeholder=' Email'
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
@@ -63,7 +63,7 @@ function SignupFormModal() {
 				<label className="signup-modal-labels">
 					<input
 						className="signup-modal-username"
-						placeHolder=' Username'
+						placeholder=' Username'
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -73,7 +73,7 @@ function SignupFormModal() {
 				<label className="signup-modal-labels">
 					<input
 						className="signup-modal-password"
-						placeHolder=' Password'
+						placeholder=' Password'
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
@@ -83,7 +83,7 @@ function SignupFormModal() {
 				<label className="signup-modal-labels">
 					<input
 						className="signup-modal-confirm-password"
-						placeHolder=' Confirm Password'
+						placeholder=' Confirm Password'
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}

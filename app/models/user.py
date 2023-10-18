@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .board_pins import boards_pins
+from .board_pins import board_pins
 
 
 class User(db.Model, UserMixin):
@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
     # Relationships
     pins = db.relationship("Pin", back_populates="user")
     boards = db.relationship("Board", back_populates="user")
+    comments = db.relationship("Comment", back_populates="user")
 
 
     @property

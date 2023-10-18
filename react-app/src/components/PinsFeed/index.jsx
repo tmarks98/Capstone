@@ -1,9 +1,23 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { useModal } from "../../context/Modal";
+import OpenModalButton from "../OpenModalButton";
+import { thunkCheckPinInBoard } from "../../store/test";
+import { thunkGetComments } from "../../store/comment";
+import { useDispatch } from "react-redux";
+import Comments from "../Comments";
 import "./index.css";
+import AddPin from "../Boards/addpin";
+import { useSelector } from "react-redux";
 
-export function PinsFeed({ pin }) {
+export function PinsFeed({ pin, boardId }) {
+  const dispatch = useDispatch();
   const { setModalContent, closeModal } = useModal();
+  const [showMenu, setShowMenu] = useState(false)
+  const ulClassName = "options-dropdown" + (showMenu ? "" : " hidden");
+  const comments = useSelector(state => state.comments.comments)
+
+
 
   const openModal = () => {
     setModalContent(
@@ -18,12 +32,23 @@ export function PinsFeed({ pin }) {
             Close
           </button>
         </div>
+        <Comments />
       </div>
     );
+  };
+  // console.log("Pin ID:", pin.id);
+  const openAddPinModal = () => {
+    setModalContent(<AddPin id={pin.id} />);
+  };
+
+  const checkIfPinIsInBoard = async () => {
+    const result = await dispatch(thunkCheckPinInBoard(1, pin.id));
+    console.log(result.message);  // This will print the message indicating whether the pin is in the board or not
   };
 
   return (
     <div>
+      <button onClick={checkIfPinIsInBoard}>test</button>
       <div className="each-feed-pin">
         <img
           className="each-feed-pin-img"
@@ -31,6 +56,7 @@ export function PinsFeed({ pin }) {
           alt=""
           onClick={openModal}
         />
+        <button onClick={openAddPinModal}>Add to Board</button>
       </div>
     </div>
   );
