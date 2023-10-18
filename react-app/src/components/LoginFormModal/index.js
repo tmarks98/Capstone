@@ -71,7 +71,7 @@ function LoginFormModal() {
           <label className="login-modal-labels">
             <input
               className={emailRed}
-              placeHolder="Email"
+              placeholder="Email"
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -81,7 +81,7 @@ function LoginFormModal() {
           <label className="login-modal-labels">
             <input
               className={passwordRed}
-              placeHolder=" Password"
+              placeholder=" Password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

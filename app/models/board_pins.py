@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
-boards_pins = db.Table(
+board_pins = db.Table(
   'board_pins',
   db.Model.metadata,
   db.Column("boards", db.Integer, db.ForeignKey(add_prefix_for_prod('boards.id')), primary_key=True),
@@ -9,4 +9,4 @@ boards_pins = db.Table(
 )
 
 if environment == "production":
-    boards_pins.schema = SCHEMA
+    board_pins.schema = SCHEMA

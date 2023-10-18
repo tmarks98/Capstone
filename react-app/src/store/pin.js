@@ -80,6 +80,10 @@ export const thunkPostPins = (pin) => async (dispatch) => {
   }
 };
 
+export const refreshPinThunk = (pin) => async (dispatch) => {
+  dispatch(editPin(pin.id, pin));
+};
+
 export const thunkEditPins = (pin, pinId) => async (dispatch) => {
   console.log('pin', pin)
   const res = await fetch(`/api/pins/${pinId}`, {
@@ -111,6 +115,18 @@ export const thunkDeletePin = (pinId) => async (dispatch) => {
   });
   dispatch(deletePin(pinId));
   return res;
+};
+
+export const addCommentThunk = (comment) => async (dispatch) => {
+  const response = await fetch(`/api/pins/${comment.pin_id}/notes`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(comment),
+  });
+  if (response.ok) {
+    const resPin = await response.json();
+    dispatch(editPin(resPin.pin, comment.pin_id));
+  }
 };
 
 // Reducer
