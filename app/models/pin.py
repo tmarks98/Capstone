@@ -29,3 +29,14 @@ class Pin(db.Model):
       'mainPic': self.main_pic,
       'createdAt': self.created_at
     }
+  
+  def to_dict_comments(self):
+    return {
+      'id': self.id,
+      'userId': self.user_id,
+      'body': self.body,
+      'title': self.title,
+      'mainPic': self.main_pic,
+      'createdAt': self.created_at,
+      "comments": [comment.to_dict() for comment in self.comments]
+    }

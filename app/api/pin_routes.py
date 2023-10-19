@@ -20,7 +20,7 @@ def validation_errors_to_error_messages(validation_errors):
 @pin_routes.route("/")
 def index():
     pins = Pin.query.all()
-    return {'pins': [pin.to_dict() for pin in pins]}
+    return {'pins': [pin.to_dict_comments() for pin in pins]}
 
 @pin_routes.route('/new', methods=['POST'])
 @login_required
@@ -37,7 +37,7 @@ def create_pin():
         )
         db.session.add(pin)
         db.session.commit()
-        return {'pin': pin.to_dict()}
+        return {'pin': pin.to_dict_comments()}
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 @pin_routes.route('/<int:pinId>', methods=['GET', 'POST', 'PUT'])
@@ -59,7 +59,7 @@ def edit_pin(pinId):
         pin.title = form.data["title"]
         pin.body = form.data["body"]
         db.session.commit()
-        return {'pin': pin.to_dict()}
+        return {'pin': pin.to_dict_comments()}
     print('----ERRORS', validation_errors_to_error_messages(form.errors))
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
