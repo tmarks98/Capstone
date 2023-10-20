@@ -7,6 +7,8 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from tempfile import NamedTemporaryFile
+import json
 import os
 import pathlib
 import requests
@@ -17,18 +19,37 @@ auth_routes = Blueprint('auth', __name__)
 if os.environ.get('FLASK_ENV') == 'development': # checking if in local so our live site isnt compromised
     os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1" # to allow Http traffic for local dev
 
-GOOGLE_CLIENT_ID = os.environ.get('GOOGLE_OAUTH_CLIENT_ID')
-client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
-GOOGLE_PASSWORD = os.environ.get('GOOGLE_PASSWORD')
-# print("secret: ", client_secrets_file)
+CLIENT_SECRET = os.getenv('GOOGLE_OAUTH_CLIENT_SECRET')
+CLIENT_ID = os.getenv('GOOGLE_OAUTH_CLIENT_ID')
 
-REDIRECT_LINK = "http://localhost:5000/api/auth/callback" if os.environ.get('FLASK_ENV') == 'development' else 'https://spinterest.onrender.com/api/auth/callback'
+client_secrets = {
+    "web": {
+        "client_id": CLIENT_ID,
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": CLIENT_SECRET,
+        "redirect_uris": [
+            "http://localhost:5000/callback"
+        ]
+    }
+}
+
+secrets = NamedTemporaryFile(delete=False)
+with open(secrets.name, "w") as output:
+    json.dump(client_secrets, output)
 
 flow = Flow.from_client_secrets_file(
-    client_secrets_file=client_secrets_file,
-    scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri=REDIRECT_LINK
+    client_secrets_file=secrets.name,
+    scopes=[
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/userinfo.email",
+        "openid"
+    ],
+    redirect_uri="http://localhost:5000/callback"
 )
+
+os.unlink(secrets.name)
 
 def validation_errors_to_error_messages(validation_errors):
     """
