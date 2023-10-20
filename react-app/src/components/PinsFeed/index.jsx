@@ -44,7 +44,7 @@ export function PinsFeed({ pin, boardId }) {
 
   const checkIfPinIsInBoard = async () => {
     const result = await dispatch(thunkCheckPinInBoard(1, pin.id));
-    console.log(result.message);   // This will print the message indicating whether the pin is in the board or not
+    console.log(result.message);   // eeeeeeeeThis will print the message indicating whether the pin is in the board or not
   };
 
   return (
