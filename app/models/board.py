@@ -23,5 +23,6 @@ class Board(db.Model):
       'userId': self.user_id,
       'title': self.title,
       'coverpic': self.coverpic,
-      'createdAt': self.created_at
+      'createdAt': self.created_at,
+      'board_pins': [pin.to_dict() for pin in self.boards_pins]
     }

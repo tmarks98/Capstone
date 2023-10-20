@@ -14,12 +14,12 @@ export default function PinFeedViews() {
   const history = useHistory();
   const pinsObj = useSelector((state) => state.pins);
   const pinValues = Object.values(pinsObj.pins);
-  const commentsObj = useSelector((state) => state.comments)
-  const commentValues = Object.values(commentsObj.comments);
+  // const commentsObj = useSelector((state) => state.comments)
+  // const commentValues = Object.values(commentsObj.comments);
   const usersObj = useSelector((state) => state.users);
   const usersValues = Object.keys(usersObj.users);
 
-  console.log('eeeeeeeeeeeee', commentValues)
+  console.log('eeeeeeeeeeeee', pinValues)
 
   const columnsObj = {
     default: 7,

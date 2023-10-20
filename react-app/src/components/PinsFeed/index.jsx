@@ -16,6 +16,7 @@ export function PinsFeed({ pin, boardId }) {
   const [showMenu, setShowMenu] = useState(false)
   const ulClassName = "options-dropdown" + (showMenu ? "" : " hidden");
   const comments = useSelector(state => state.comments.comments)
+  console.log('PINNN', pin.comments)
 
 
 
