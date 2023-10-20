@@ -50,7 +50,7 @@ flow = Flow.from_client_secrets_file(
 )
 
 os.unlink(secrets.name)
-
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 def validation_errors_to_error_messages(validation_errors):
     """
     Simple function that turns the WTForms validation errors into a simple list
