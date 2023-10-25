@@ -49,7 +49,7 @@ export function PinsFeed({ pin, boardId }) {
 
   return (
     <div>
-      {/* <button onClick={checkIfPinIsInBoard}>test</button>
+      {/* <button onClick={checkIfPinIsInBoard}>test</button> */}
       <div className="each-feed-pin">
         <img
           className="each-feed-pin-img"
@@ -57,8 +57,8 @@ export function PinsFeed({ pin, boardId }) {
           alt=""
           onClick={openModal}
         />
-        <button onClick={openAddPinModal}>Add to Board</button>
-      </div> */}
+        {/* <button onClick={openAddPinModal}>Add to Board</button> */}
+      </div>
     </div>
   );
 }

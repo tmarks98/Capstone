@@ -9,7 +9,7 @@ export default function PinInfoViews() {
     const { pinId } = useParams;
     const dispatch = useDispatch();
     const pins = useSelector((state) => state.pins);
-    console.log('pins1', pinId)
+    // console.log('pins1', pinId)
 
     useEffect(() => {
         dispatch(thunkGetPin(pinId))

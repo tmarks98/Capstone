@@ -7,19 +7,19 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Masonry from 'react-masonry-css'
 import './index.css'
 import { thunkGetComments } from "../../store/comment";
-import { thunkGetUsers } from "../../store/user";
+// import { thunkGetUsers } from "../../store/user";
 
 export default function PinFeedViews() {
   const dispatch = useDispatch();
   const history = useHistory();
   const pinsObj = useSelector((state) => state.pins);
   const pinValues = Object.values(pinsObj.pins);
-  // const commentsObj = useSelector((state) => state.comments)
-  // const commentValues = Object.values(commentsObj.comments);
-  const usersObj = useSelector((state) => state.users);
-  const usersValues = Object.keys(usersObj.users);
+  const commentsObj = useSelector((state) => state.comments)
+  const commentValues = Object.values(commentsObj.comments);
+  // const usersObj = useSelector((state) => state.users);
+  // const usersValues = Object.keys(usersObj.users);
 
-  console.log('eeeeeeeeeeeee', pinValues)
+  // console.log('eeeeeeeeeeeee', pinValues)
 
   const columnsObj = {
     default: 7,
@@ -34,7 +34,7 @@ export default function PinFeedViews() {
   useEffect(() => {
     dispatch(thunkGetPins());
     dispatch(thunkGetComments());
-    dispatch(thunkGetUsers());
+    // dispatch(thunkGetUsers());
   }, [dispatch]);
 
   return (
