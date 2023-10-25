@@ -50,7 +50,7 @@ export const thunkPostBoards = (board) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(board),
   });
-  console.log("reeeee", res);
+  // console.log("reeeee", res);
   if (res.ok) {
     const data = await res.json();
     dispatch(createBoard(data));
@@ -66,22 +66,22 @@ export const thunkPostBoards = (board) => async (dispatch) => {
 };
 
 export const thunkEditBoards = (board, boardId) => async (dispatch) => {
-  console.log('board', board)
+  // console.log('board', board)
   const res = await fetch(`/api/boards/${boardId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(board),
   });
-  console.log("res", res);
+  // console.log("res", res);
 
   if (res.ok) {
     const data = await res.json();
-    console.log('res-good', data)
+    // console.log('res-good', data)
     dispatch(editBoard(data.board, boardId));
     return null;
   } else if (res.status < 500) {
     const data = await res.json();
-    console.log('res-bad', data)
+    // console.log('res-bad', data)
     if (data.errors) {
       return data.errors;
     }

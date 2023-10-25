@@ -85,22 +85,22 @@ export const refreshPinThunk = (pin) => async (dispatch) => {
 };
 
 export const thunkEditPins = (pin, pinId) => async (dispatch) => {
-  console.log('pin', pin)
+  // console.log('pin', pin)
   const res = await fetch(`/api/pins/${pinId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(pin),
   });
-  console.log("res", res);
+  // console.log("res", res);
 
   if (res.ok) {
     const data = await res.json();
-    console.log('res-good', data)
+    // console.log('res-good', data)
     dispatch(editPin(data.pin, pinId));
     return null;
   } else if (res.status < 500) {
     const data = await res.json();
-    console.log('res-bad', data)
+    // console.log('res-bad', data)
     if (data.errors) {
       return data.errors;
     }
