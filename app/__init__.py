@@ -85,7 +85,7 @@ def api_help():
 @app.route('/<path:path>')
 def react_root(path):
     """
-    This route will direct to the public directory in our
+    This  route will direct to the public directory in our
     react builds in the production environment for favicon
     or index.html requests
     """
